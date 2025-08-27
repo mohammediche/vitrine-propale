@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { motion, useInView, AnimatePresence } from 'framer-motion';
 import { ChevronDown, HelpCircle, Settings, Briefcase } from 'lucide-react';
 import { faqHomepage } from '@/constants/FAQ';
-import SupportCTA from './banner/SupportCTA';
+import SupportCTA from '../banner/SupportCTA';
 
 const FAQ = () => {
   const ref = useRef<HTMLElement>(null);

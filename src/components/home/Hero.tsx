@@ -5,7 +5,7 @@ import { ArrowRight, Sparkles, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from '@/hooks/useNavigate';
 import { stats } from '@/constants/stats';
-import AnimatedNumber from './ui/animatedNumber';
+import AnimatedNumber from '../ui/animatedNumber';
 
 const Hero = () => {
   const { navigateTo } = useNavigate();

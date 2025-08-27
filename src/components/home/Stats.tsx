@@ -2,7 +2,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Briefcase, TrendingUp, Award, Globe } from 'lucide-react';
-import AnimatedNumber from './ui/animatedNumber';
+import AnimatedNumber from '../ui/animatedNumber';
 
 
 const Stats = () => {

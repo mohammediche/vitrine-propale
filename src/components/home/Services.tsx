@@ -3,7 +3,7 @@ import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { Building2, BookOpenCheck, Cpu, Bot, School, Megaphone } from 'lucide-react';
-import ConsultationCTA from './banner/ConsultationCTA';
+import ConsultationCTA from '../banner/ConsultationCTA';
 import { useRouter } from 'next/navigation';
 
 export const services = [{
