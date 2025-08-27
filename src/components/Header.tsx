@@ -5,16 +5,17 @@ import { Menu, X, ChevronDown, Sparkles, Sun, Moon } from 'lucide-react';
 import Image from "next/image";
 import { Button } from '@/components/ui/button';
 import { useTheme } from '@/contexts/ThemeContext';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { services } from '@/constants/navigationLinks';
+import { useNavigate } from '@/hooks/useNavigate';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isServicesMenuOpen, setServicesMenuOpen] = useState(false);
   const pathname = usePathname();
-  const router = useRouter();
+  const { navigateTo } = useNavigate();
   const { theme, toggleTheme } = useTheme();
 
   useEffect(() => {
@@ -30,10 +31,6 @@ const Header = () => {
     setServicesMenuOpen(false);
   }
 
-  const handleNavClick = (link: string) => {
-    router.push(link);
-  };
-  
   const navLinkClasses = "text-xs text-gray-700 dark:text-gray-300 hover:text-blue-600 dark:hover:text-amber-400 transition-colors duration-300 font-medium";
   const activeNavLinkClasses = "text-blue-600 dark:text-amber-400";
 
@@ -130,14 +127,14 @@ const Header = () => {
             <Button
               size="sm"
               variant="outline"
-              onClick={() => handleNavClick('Découvrez Propal')}
+              onClick={() => navigateTo('/')}
               className="btn-secondary rounded-[12px] text-xs px-3"
             >
               Découvrez Propale
             </Button>
             <Button
               size="sm"
-              onClick={() => handleNavClick('Prendre RDV')}
+              onClick={() => navigateTo('/')}
               className="btn-primary pulse-animation rounded-[12px] text-xs px-3"
             >
               Prendre RDV
@@ -200,8 +197,8 @@ const Header = () => {
               <Link href="/recrutement/orientation" className="text-left text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-amber-400 transition-colors duration-300" onClick={closeAllMenus}>Recrutement</Link>
               <Link href="/contact" className="text-left text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-amber-400 transition-colors duration-300" onClick={closeAllMenus}>Contact</Link>
               <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <Button variant="outline" onClick={() => handleNavClick('Découvrez Propal')} className="btn-secondary rounded-[12px]">Découvrez Propale</Button>
-                <Button onClick={() => handleNavClick('Prendre RDV')} className="btn-primary rounded-[12px]">Prendre RDV</Button>
+                <Button variant="outline" onClick={() => navigateTo('/')} className="btn-secondary rounded-[12px]">Découvrez Propale</Button>
+                <Button onClick={() => navigateTo('/')} className="btn-primary rounded-[12px]">Prendre RDV</Button>
               </div>
             </div>
           </motion.div>

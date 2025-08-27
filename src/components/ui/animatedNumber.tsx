@@ -9,12 +9,12 @@ type AnimatedNumberProps = {
   duration?: number;
 };
 
-const AnimatedNumber: React.FC<AnimatedNumberProps> = ({
+const AnimatedNumber = ({
   value,
   suffix = "",
   className = "text-4xl font-bold text-gradient", // 👈 valeur par défaut
   duration = 2
-}) => {
+}: AnimatedNumberProps) => {
   const ref = useRef<HTMLDivElement>(null);
   const isInView = useInView(ref, { once: true, amount: 0.5 });
   const controls = useAnimation();

@@ -3,6 +3,12 @@ import React from 'react';
 import { Metadata } from 'next';
 import Hero from '@/components/Hero';
 import Stats from '@/components/Stats';
+import ExcellenceSection from '@/components/about/ExcellenceSection';
+import Problems from '@/components/Problems';
+import Services from '@/components/Services';
+import Process from '@/components/Process';
+import Testimonials from '@/components/Testimonials';
+import FAQ from '@/components/FAQ';
 // import About from '@/components/About';
 // import Stats from '@/components/Stats';
 // import Problems from '@/components/Problems';
@@ -22,17 +28,18 @@ export const metadata: Metadata = {
   },
 };
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   return (
     <main>
       <Hero />
       <Stats />
-      {/* <About />
+      <ExcellenceSection />
       <Problems />
       <Services />
       <Process />
       <Testimonials />
       <FAQ />
+      {/*
       <ContactCTA /> */}
     </main>
   );

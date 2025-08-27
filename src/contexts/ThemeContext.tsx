@@ -23,7 +23,7 @@ interface ThemeProviderProps {
   children: React.ReactNode;
 }
 
-export const ThemeProvider: React.FC<ThemeProviderProps> = ({ children }) => {
+export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const [theme, setThemeState] = useState<Theme>('light');
 
   const applyTheme = useCallback((themeToApply: Theme) => {

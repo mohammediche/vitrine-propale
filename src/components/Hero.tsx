@@ -3,17 +3,13 @@ import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Sparkles, Rocket } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { useRouter } from 'next/navigation';
+import { useNavigate } from '@/hooks/useNavigate';
 import { stats } from '@/constants/stats';
 import AnimatedNumber from './ui/animatedNumber';
 
-const Hero: React.FC = () => {
-  const router = useRouter();
+const Hero = () => {
+  const { navigateTo } = useNavigate();
   const [animateRocket, setAnimateRocket] = useState(true);
-
-  const handleCTAClick = (link: string) => {
-    router.push(link);
-  }; 
 
   return (
     <section className={`min-h-screen flex items-center justify-center relative overflow-hidden pt-20 transition-colors duration-1000 dark:bg-transparent bg-blue-50`}>
@@ -81,7 +77,7 @@ const Hero: React.FC = () => {
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <Button
-              onClick={() => handleCTAClick('/prendre-rdv')}
+              onClick={() => navigateTo('/prendre-rdv')}
               size="lg"
               className="btn-primary text-lg px-8 py-4 rounded-[12px] group pulse-animation"
             >
@@ -90,7 +86,7 @@ const Hero: React.FC = () => {
             </Button>
             
             <Button
-              onClick={() => handleCTAClick('https://www.propale.co/')}
+              onClick={() => navigateTo('https://www.propale.co/')}
               variant="outline"
               size="lg"
               className="btn-secondary text-lg px-8 py-4 rounded-[12px]"

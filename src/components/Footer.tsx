@@ -3,7 +3,6 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import Image from "next/image";
-import { useRouter } from 'next/navigation';
 import { 
   Linkedin, 
   Twitter, 
@@ -14,14 +13,10 @@ import {
   MapPin 
 } from 'lucide-react';
 import { footerLinks } from '@/constants/navigationLinks';
+import { useNavigate } from '@/hooks/useNavigate';
 
 const Footer = () => {
-    const router = useRouter();
-    
-  const handleLinkClick = (linkName:string) => {
-    router.push(`/services/${linkName}`) 
-    
-  };
+    const { navigateTo } = useNavigate();
 
   const socialLinks = [
     { icon: Linkedin, name: 'LinkedIn', color: 'hover:text-blue-400' },
@@ -136,7 +131,7 @@ const Footer = () => {
                 <li key={index}>
                   {link.path === '#' ? (
                     <button
-                      onClick={() => handleLinkClick(link.name)}
+                      onClick={() => navigateTo(`/services/${link.name}`)}
                       className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-left"
                     >
                       {link.name}
@@ -166,7 +161,7 @@ const Footer = () => {
               {footerLinks.legal.map((link, index) => (
                 <li key={index}>
                   <button
-                    onClick={() => handleLinkClick(link)}
+                    onClick={() => navigateTo(`/services/${link}`)}
                     className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-left"
                   >
                     {link}
@@ -194,7 +189,7 @@ const Footer = () => {
               {socialLinks.map((social, index) => (
                 <motion.button
                   key={index}
-                  onClick={() => handleLinkClick(social.name)}
+                  onClick={() => navigateTo(`/services/${social.name}`)}
                   whileHover={{ scale: 1.2, y: -2 }}
                   whileTap={{ scale: 0.9 }}
                   className={`w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 ${social.color} transition-all duration-300 hover:bg-gray-700`}
