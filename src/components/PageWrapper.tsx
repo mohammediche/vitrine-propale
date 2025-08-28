@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, {useEffect} from 'react';
 import { usePathname } from 'next/navigation';
 import Header from './Header';
 import Footer from './Footer';
@@ -10,6 +10,10 @@ interface PageWrapperProps {
 
 const PageWrapper = ({ children }: PageWrapperProps) => {
   const pathname = usePathname();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   
   const hideHeaderFooter = [
     '/', // IntroPage
