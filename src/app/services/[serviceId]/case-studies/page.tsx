@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { Button } from '@/components/ui/button';
 import { ArrowRight, ArrowLeft } from 'lucide-react';
-import { servicesData } from '@/data/ServicesData';
+import { servicesData } from '@/data/servicesData';
 import ContactCTA from '@/components/banner/ContactCTA';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';

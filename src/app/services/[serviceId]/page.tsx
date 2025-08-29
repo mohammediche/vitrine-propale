@@ -1,7 +1,7 @@
 "use client";
 import React from 'react';
 import { notFound } from 'next/navigation';
-import { servicesData } from '@/data/ServicesData';
+import { servicesData } from '@/data/servicesData';
 import { motion } from 'framer-motion';
 import { CheckCircle, Star, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
