@@ -37,6 +37,11 @@
   --radius: 0.5rem;
 }
 
+html {
+  --scroll-behavior: smooth;
+  scroll-behavior: smooth;
+}
+
 html.dark {
   --primary-bg: #050B0C;
   --secondary-bg: #081038;
