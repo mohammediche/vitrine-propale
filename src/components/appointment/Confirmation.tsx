@@ -4,8 +4,12 @@ import { motion } from 'framer-motion';
 import { CheckCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
-import { format } from 'date-fns';
-import { fr } from 'date-fns/locale';
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import 'dayjs/locale/fr';
+
+dayjs.extend(localizedFormat);
+dayjs.locale('fr');
 import { AppointmentFormData } from '@/resolvers/appointment-form-validator';
 
 interface ConfirmationProps {
@@ -31,7 +35,7 @@ const Confirmation = ({ appointmentData }: ConfirmationProps) => {
         est programmé le <br />
         <span className="font-semibold text-blue-600 dark:text-blue-400">
           {appointmentData.date 
-            ? format(appointmentData.date, 'eeee dd MMMM yyyy', { locale: fr })
+            ? dayjs(appointmentData.date).format('dddd DD MMMM YYYY')
             : ''
           }{' '}
           à {appointmentData.time}

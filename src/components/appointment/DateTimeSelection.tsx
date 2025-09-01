@@ -4,10 +4,14 @@ import { motion } from 'framer-motion';
 import { Clock } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Calendar } from '@/components/ui/calendar';
-import { format } from 'date-fns';
-import { fr } from 'date-fns/locale';
+import dayjs from 'dayjs';
+import localizedFormat from 'dayjs/plugin/localizedFormat';
+import 'dayjs/locale/fr';
 import { Control, Controller, UseFormSetValue, UseFormWatch } from 'react-hook-form';
 import { AppointmentFormData } from '@/resolvers/appointment-form-validator';
+
+dayjs.extend(localizedFormat);
+dayjs.locale('fr');
 
 interface DateTimeSelectionProps {
   control: Control<AppointmentFormData>;
@@ -54,7 +58,7 @@ const DateTimeSelection = ({ control, setValue, watch }: DateTimeSelectionProps)
         </h2>
         <p className="text-gray-500 dark:text-gray-400 mb-4">
           {watchedValues.date 
-            ? format(watchedValues.date, 'eeee dd MMMM', { locale: fr })
+            ? dayjs(watchedValues.date).format('dddd DD MMMM')
             : 'Heure de Paris (CET)'
           }
         </p>

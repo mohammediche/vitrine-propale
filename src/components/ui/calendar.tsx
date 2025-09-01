@@ -1,7 +1,15 @@
 import React from "react"
 import { ChevronLeft, ChevronRight } from "lucide-react"
-import { format, addMonths, subMonths, startOfMonth, endOfMonth, eachDayOfInterval, isSameDay, isToday } from "date-fns"
-import { fr } from "date-fns/locale"
+import dayjs from "dayjs"
+import localizedFormat from "dayjs/plugin/localizedFormat"
+import isSameOrBefore from "dayjs/plugin/isSameOrBefore"
+import isSameOrAfter from "dayjs/plugin/isSameOrAfter"
+import "dayjs/locale/fr"
+
+dayjs.extend(localizedFormat)
+dayjs.extend(isSameOrBefore)
+dayjs.extend(isSameOrAfter)
+dayjs.locale("fr")
 
 interface CalendarProps {
   selected?: Date;
@@ -11,73 +19,56 @@ interface CalendarProps {
 }
 
 function Calendar({ selected, onSelect, disabled, className }: CalendarProps) {
-  const [currentMonth, setCurrentMonth] = React.useState(new Date())
+  const [currentMonth, setCurrentMonth] = React.useState(dayjs())
 
-  const nextMonth = () => setCurrentMonth(addMonths(currentMonth, 1))
-  const prevMonth = () => setCurrentMonth(subMonths(currentMonth, 1))
+  const nextMonth = () => setCurrentMonth(currentMonth.add(1, 'month'))
+  const prevMonth = () => setCurrentMonth(currentMonth.subtract(1, 'month'))
 
-  const monthStart = startOfMonth(currentMonth)
-  const monthEnd = endOfMonth(currentMonth)
-  const monthDays = eachDayOfInterval({ start: monthStart, end: monthEnd })
-
-  // Calculer les jours du mois précédent pour remplir la première semaine
-  const firstDayOfWeek = monthStart.getDay()
-  const daysFromPrevMonth = firstDayOfWeek === 0 ? 6 : firstDayOfWeek - 1
-  
-  // Calculer les jours du mois suivant pour remplir la dernière semaine
-  const lastDayOfWeek = monthEnd.getDay()
-  const daysFromNextMonth = lastDayOfWeek === 0 ? 0 : 7 - lastDayOfWeek
+  const monthStart = currentMonth.startOf('month')
+  const monthEnd = currentMonth.endOf('month')
 
   // Créer la grille complète
-  const allDays = []
-  
-  // Ajouter les jours du mois précédent
-  for (let i = daysFromPrevMonth; i > 0; i--) {
-    const date = new Date(monthStart)
-    date.setDate(date.getDate() - i)
-    allDays.push({ date, isCurrentMonth: false })
+  const allDays: { date: dayjs.Dayjs, isCurrentMonth: boolean }[] = []
+
+  // Jours du mois précédent
+  const firstDayOfWeek = monthStart.day() === 0 ? 6 : monthStart.day() - 1
+  for (let i = firstDayOfWeek; i > 0; i--) {
+    allDays.push({ date: monthStart.subtract(i, 'day'), isCurrentMonth: false })
   }
-  
-  // Ajouter les jours du mois actuel
-  monthDays.forEach(date => {
-    allDays.push({ date, isCurrentMonth: true })
-  })
-  
-  // Ajouter les jours du mois suivant
+
+  // Jours du mois actuel
+  for (let i = 0; i < monthEnd.date(); i++) {
+    allDays.push({ date: monthStart.add(i, 'day'), isCurrentMonth: true })
+  }
+
+  // Jours du mois suivant
+  const lastDayOfWeek = monthEnd.day()
+  const daysFromNextMonth = lastDayOfWeek === 0 ? 0 : 7 - lastDayOfWeek
   for (let i = 1; i <= daysFromNextMonth; i++) {
-    const date = new Date(monthEnd)
-    date.setDate(date.getDate() + i)
-    allDays.push({ date, isCurrentMonth: false })
+    allDays.push({ date: monthEnd.add(i, 'day'), isCurrentMonth: false })
   }
 
-  const handleDateClick = (date: Date) => {
-    if (disabled?.before && date < disabled.before) return
-    if (onSelect) onSelect(date)
+  const handleDateClick = (date: dayjs.Dayjs) => {
+    if (disabled?.before && date.isBefore(dayjs(disabled.before), 'day')) return
+    onSelect?.(date.toDate())
   }
 
-  const isDateDisabled = (date: Date) => {
-    return disabled?.before && date < disabled.before
-  }
+  const isDateDisabled = (date: dayjs.Dayjs) =>
+    disabled?.before && date.isBefore(dayjs(disabled.before), 'day')
 
   return (
     <div className={`p-4 ${className}`}>
       {/* Header avec navigation */}
       <div className="flex items-center justify-between mb-4">
-        <button
-          onClick={prevMonth}
-          className="p-2 rounded hover:bg-gray-100 transition-colors"
-        >
+        <button onClick={prevMonth} className="p-2 rounded hover:bg-gray-100 transition-colors">
           <ChevronLeft className="h-4 w-4" />
         </button>
         
         <h2 className="text-lg font-semibold">
-          {format(currentMonth, 'MMMM yyyy', { locale: fr })}
+          {currentMonth.format('MMMM YYYY')}
         </h2>
         
-        <button
-          onClick={nextMonth}
-          className="p-2 rounded hover:bg-gray-100 transition-colors"
-        >
+        <button onClick={nextMonth} className="p-2 rounded hover:bg-gray-100 transition-colors">
           <ChevronRight className="h-4 w-4" />
         </button>
       </div>
@@ -94,8 +85,8 @@ function Calendar({ selected, onSelect, disabled, className }: CalendarProps) {
       {/* Grille des dates */}
       <div className="grid grid-cols-7 gap-1">
         {allDays.map(({ date, isCurrentMonth }, index) => {
-          const isSelected = selected && isSameDay(date, selected)
-          const isCurrentDay = isToday(date)
+          const isSelected = selected && date.isSame(dayjs(selected), 'day')
+          const isCurrentDay = date.isSame(dayjs(), 'day')
           const isDisabled = isDateDisabled(date)
 
           return (
@@ -123,7 +114,7 @@ function Calendar({ selected, onSelect, disabled, className }: CalendarProps) {
                 }
               `}
             >
-              {format(date, 'd')}
+              {date.date()}
             </button>
           )
         })}
