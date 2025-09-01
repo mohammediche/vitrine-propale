@@ -2,7 +2,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import zod from 'zod';
 import { FieldErrorMessage, requiredString, emailValidator } from './utils';
 
-const contactFormValidator = zod.object({
+export const contactFormValidator = zod.object({
   name: requiredString().min(2, 'Le nom doit contenir au moins 2 caractères'),
   email: emailValidator,
   company: zod.string().optional(),
