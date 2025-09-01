@@ -1,21 +1,24 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { Send } from 'lucide-react';
+import { Send, CheckCircle, AlertCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Textarea } from '@/components/ui/textarea';
 import { Select } from '@/components/ui/select';
 import { useForm, Controller } from 'react-hook-form';
 import { contactFormResolver, ContactFormData } from '@/resolvers/contact-form-validator';
+import { sendContactForm } from '@/services/contact';
 
 const ContactForm = () => {
-  // Configuration de React Hook Form avec le resolver externe
+  const [submitStatus, setSubmitStatus] = useState<'initial' | 'loading' | 'success' | 'error'>('initial');
+  const [errorMessage, setErrorMessage] = useState<string>('');
+
   const {
     control,
     handleSubmit,
     reset,
-    formState: { errors, isSubmitting },
+    formState: { errors },
   } = useForm<ContactFormData>({
     resolver: contactFormResolver,
     defaultValues: {
@@ -29,26 +32,33 @@ const ContactForm = () => {
   });
 
   const onSubmit = async (data: ContactFormData) => {
+    setSubmitStatus('loading')
+    setErrorMessage('')
+  
     try {
-      // Simulation d'envoi (remplacez par votre logique d'API)
-      await new Promise(resolve => setTimeout(resolve, 1000));
-      
-      // Ici vous pouvez ajouter votre logique d'envoi (API, email, etc.)
-      console.log('Données du formulaire:', data);
-      
-      // Succès - réinitialise le formulaire
-      reset();
-      
-      // Optionnel : afficher un message de succès
-      alert('Message envoyé avec succès !');
-      
+      await sendContactForm(data)
+      setSubmitStatus('success')
+      reset()
+      // Reset success status after 5 seconds
+      setTimeout(() => setSubmitStatus('initial'), 5000)
     } catch (error) {
-      console.error('Erreur lors de l\'envoi:', error);
-      
-      // Optionnel : afficher un message d'erreur
-      alert('Erreur lors de l\'envoi. Veuillez réessayer.');
+      console.error('Erreur lors de l\'envoi:', error)
+      setSubmitStatus('error')
+      setErrorMessage(
+        error instanceof Error
+          ? error.message
+          : 'Erreur lors de l\'envoi. Veuillez réessayer.'
+      )
+  
+      // Reset error status after 5 seconds
+      setTimeout(() => {
+        setSubmitStatus('initial')
+        setErrorMessage('')
+      }, 5000)
     }
-  };
+  }
+
+  const isSubmitting = submitStatus === 'loading';
 
   return (
     <motion.div 
@@ -58,6 +68,33 @@ const ContactForm = () => {
       transition={{ duration: 0.7 }} 
       className="bg-gray-50 dark:bg-gray-900/50 p-8 rounded-2xl shadow-lg"
     >
+      {/* Status Messages */}
+      {submitStatus === 'success' && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg flex items-center gap-3"
+        >
+          <CheckCircle className="w-5 h-5 text-green-600 dark:text-green-400" />
+          <p className="text-green-800 dark:text-green-200 font-medium">
+            Message envoyé avec succès ! Nous vous répondrons dans les plus brefs délais.
+          </p>
+        </motion.div>
+      )}
+
+      {submitStatus === 'error' && (
+        <motion.div
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-6 p-4 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg flex items-center gap-3"
+        >
+          <AlertCircle className="w-5 h-5 text-red-600 dark:text-red-400" />
+          <p className="text-red-800 dark:text-red-200 font-medium">
+            {errorMessage}
+          </p>
+        </motion.div>
+      )}
+
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Nom */}
         <div>
