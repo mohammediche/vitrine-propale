@@ -1,5 +1,3 @@
-// lib/templates/contactTemplate.ts
-
 import { ContactFormData } from "@/types/brevo";
 
 export function contactTemplate(data: ContactFormData) {

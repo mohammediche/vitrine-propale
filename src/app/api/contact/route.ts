@@ -1,6 +1,6 @@
 // app/api/contact/route.ts
 import { NextRequest, NextResponse } from 'next/server'
-import { sendContactEmail } from '@/lib/brevo/brevo'
+import { sendContactEmail } from '@/services/back/contact'
 import { contactFormValidator } from '@/resolvers/contact-form-validator'
 
 export async function POST(req: NextRequest) {

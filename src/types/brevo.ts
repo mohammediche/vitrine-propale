@@ -7,15 +7,13 @@ export interface ContactFormData {
     message: string;
   }
   
-//   export interface RecruitmentFormData {
-//     firstName: string;
-//     lastName: string;
-//     email: string;
-//     phone?: string;
-//     position: string;
-//     message?: string;
-//     resume?: File | null;
-//   }
+  export interface RecruitmentFormData {
+    fullName: string;
+    email: string;
+    phone: string;
+    resume: File | null;
+    message?: string;
+  }
   
   export interface BrevoEmail {
     sender: {

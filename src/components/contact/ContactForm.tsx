@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select } from '@/components/ui/select';
 import { useForm, Controller } from 'react-hook-form';
 import { contactFormResolver, ContactFormData } from '@/resolvers/contact-form-validator';
-import { sendContactForm } from '@/services/contact';
+import { sendContactForm } from '@/services/front/contact';
 
 const ContactForm = () => {
   const [submitStatus, setSubmitStatus] = useState<'initial' | 'loading' | 'success' | 'error'>('initial');
