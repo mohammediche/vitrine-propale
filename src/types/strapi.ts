@@ -27,4 +27,15 @@ type Author = {
 
 
   }
+  export type Job = {
+    id: number
+    createdAt: string
+    updatedAt: string
+    publishedAt: string
+    title: string
+    content: []
+    slug: string
+    category: string
+    location: string
+  }
   

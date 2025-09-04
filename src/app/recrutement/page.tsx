@@ -1,22 +1,20 @@
-"use client";
-import { motion } from 'framer-motion';
 import RecruitmentIntro from '@/components/recrutement/RecruitmentIntro';
 import SpontaneousApplication from '@/components/recrutement/SpontaneousApplication';
-import JobOpenings from '@/components/recrutement/JobOpenings';
+import JobList from '@/components/recrutement/JobList';
+import AnimatedWrapper from '@/components/ui/AnimatedWrapper';
 
 const RecruitmentPage = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      className="bg-white dark:bg-transparent text-gray-900 dark:text-white"
-    >
+    <AnimatedWrapper className="bg-white dark:bg-transparent text-gray-900 dark:text-white">
       <RecruitmentIntro />
-      <JobOpenings />
+      <section id="offres" className="py-20 scroll-mt-20">
+        <div className="container mx-auto px-6">
+          <h2 className="text-3xl md:text-4xl font-bold text-center mb-12 heading-gradient">Nos opportunités</h2>
+          <JobList />
+        </div>
+      </section>
       <SpontaneousApplication />
-    </motion.div>
+    </AnimatedWrapper>
   );
 };
 

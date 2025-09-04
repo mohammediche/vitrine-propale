@@ -1,7 +1,7 @@
 import React from 'react';
 import { notFound } from 'next/navigation';
 import { Calendar } from 'lucide-react';
-import { fetchArticleBySlug, fetchArticles } from '@/lib/strapi/strapi';
+import { fetchArticleBySlug, fetchArticles } from '@/lib/strapi/articles';
 import AnimatedWrapper from '@/components/ui/AnimatedWrapper';
 import { formatDate } from '@/lib/utils';
 import NewsletterArticleContent from '@/components/newsletters/NewsletterArticleContent';

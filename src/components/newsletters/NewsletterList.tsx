@@ -1,6 +1,6 @@
 import React from 'react';
 import NewsletterCard from './NewsletterCard';
-import { fetchArticles } from '@/lib/strapi/strapi';
+import { fetchArticles } from '@/lib/strapi/articles';
 import { Article } from '@/types/strapi';
 
 const NewsletterList = async () => {
