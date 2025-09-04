@@ -60,14 +60,15 @@ const NewsletterArticleContent = ({ article, articleId, allArticles }: Newslette
               >
                 <BlocksRenderer content={article.content} />
               </motion.div>
-              {article.isPaid && !isUnlocked ? (
-                <PremiumContentBanner onUnlockClick={() => setShowPaywall(true)} />
-              ) : (
-                <div className="[&_h3]:text-2xl [&_h3]:font-bold [&_h3]:my-4 [&_h3]:text-gray-900 [&_h3]:dark:text-white">
-                  <BlocksRenderer content={article.paid_content} />
-                </div>
-              )
-              }
+              {article.isPaid && (
+                !isUnlocked ? (
+                  <PremiumContentBanner onUnlockClick={() => setShowPaywall(true)} />
+                ) : (
+                  <div className="[&_h3]:text-2xl [&_h3]:font-bold [&_h3]:my-4 [&_h3]:text-gray-900 [&_h3]:dark:text-white">
+                    <BlocksRenderer content={article.paid_content} />
+                  </div>
+                )
+              )}
             </div>
 
             <motion.aside 
