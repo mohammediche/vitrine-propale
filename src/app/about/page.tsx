@@ -1,6 +1,3 @@
-"use client";
-import { motion } from 'framer-motion';
-
 import AboutIntro from '@/components/about/AboutIntro';
 import VisionSection from '@/components/about/VisionSection';
 import ValuesSection from '@/components/about/ValuesSection';
@@ -9,16 +6,12 @@ import ImpactSection from '@/components/about/ImpactSection';
 import TimelineSection from '@/components/about/TimelineSection';
 import RseSection from '@/components/about/RseSection';
 import ContactCTA from '@/components/banner/ContactCTA';
+import AnimatedWrapper from '@/components/ui/AnimatedWrapper';
 
 const AboutPage = () => {
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="bg-white dark:bg-transparent"
-    >
+    <AnimatedWrapper className="bg-white dark:bg-transparent">
       <AboutIntro />
       <VisionSection />
       <ValuesSection />
@@ -28,7 +21,7 @@ const AboutPage = () => {
       <RseSection />
       <ContactCTA isInView={true}/>
 
-    </motion.div>
+    </AnimatedWrapper>
   );
 };
 

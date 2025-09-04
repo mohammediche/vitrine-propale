@@ -1,22 +1,15 @@
-"use client";
 import React from 'react';
-import { motion } from 'framer-motion';
 import ContactIntro from '@/components/contact/ContactIntro';
 import ContactInfo from '@/components/contact/ContactInfo';
 import ContactForm from '@/components/contact/ContactForm';
 import ContactServices from '@/components/contact/ContactServices';
 import ContactMap from '@/components/contact/ContactMap';
 import FAQContact from '@/components/contact/FAQContact';
+import AnimatedWrapper from '@/components/ui/AnimatedWrapper';
 
 const ContactPage = () => {
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      className="text-gray-800 dark:text-white"
-    >
+    <AnimatedWrapper className="text-gray-800 dark:text-white">
       <ContactIntro />
       
       <section className="py-20">
@@ -29,7 +22,7 @@ const ContactPage = () => {
       <ContactServices />
       <ContactMap />
       <FAQContact />
-    </motion.div>
+    </AnimatedWrapper>
   );
 };
 
