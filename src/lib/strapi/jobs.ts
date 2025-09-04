@@ -23,9 +23,5 @@ export async function fetchJobs() {
     const json = await res.json();
     return json.data[0] || null;
   }
-/* INFO: Lors de la création d'une nouvelle collection type dans Strapi, 
-   n'oubliez pas d'activer la permission correspondante dans 
-   Settings → Users & Permissions Plugin → Roles → Public 
-*/  
   
   

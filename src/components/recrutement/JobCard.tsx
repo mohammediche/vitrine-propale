@@ -3,7 +3,7 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
 import { Button } from '@/components/ui/button';
-import { ArrowRight, MapPin, Briefcase } from 'lucide-react';
+import { ArrowRight, Briefcase } from 'lucide-react';
 import { Job } from '@/types/strapi';
 
 interface JobCardProps {
