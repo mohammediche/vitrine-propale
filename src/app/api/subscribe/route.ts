@@ -23,9 +23,10 @@ export async function POST(req: NextRequest) {
     })
   } catch (error) {
     console.error('Erreur dans route subscribe:', error)
+    const errorMessage = error instanceof Error ? error.message : 'Impossible de s\'inscrire à la newsletter. Veuillez réessayer plus tard.'
     return NextResponse.json(
-      { error: 'Impossible de s\'inscrire à la newsletter. Veuillez réessayer plus tard.' },
-      { status: 500 }
+      { error: errorMessage },
+      { status: 400 }
     )
   }
 }

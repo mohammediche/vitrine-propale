@@ -32,7 +32,8 @@ const NewsletterSubscription = () => {
       setIsSubscribed(true);
       localStorage.setItem('newsletter_subscribed', email);
     } catch (error) {
-      setMessage('Erreur lors de l\'inscription. Veuillez réessayer.');
+      const errorMessage = error instanceof Error ? error.message : 'Erreur lors de l\'inscription. Veuillez réessayer.';
+      setMessage(errorMessage);
       console.error('Newsletter subscription error:', error);
     } finally {
       setIsLoading(false);

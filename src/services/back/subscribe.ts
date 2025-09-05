@@ -1,6 +1,28 @@
 import { SubscribeFormData } from '@/types/brevo'
 
+async function checkEmailExists(email: string): Promise<boolean> {
+  try {
+    const response = await fetch(`https://api.brevo.com/v3/contacts/${encodeURIComponent(email)}`, {
+      method: "GET",
+      headers: {
+        "accept": "application/json",
+        "api-key": process.env.BREVO_API_KEY!,
+      }
+    });
+
+    return response.ok;
+  } catch (error) {
+    console.error('Erreur lors de la vérification de l\'email:', error);
+    return false;
+  }
+}
+
 export async function subscribeToNewsletter(data: SubscribeFormData) {
+  // Vérifier si l'email existe déjà
+  const emailExists = await checkEmailExists(data.email);
+  if (emailExists) {
+    throw new Error('Cet email est déjà abonné à la newsletter');
+  }
   try {
     const response = await fetch("https://api.brevo.com/v3/contacts", {
       method: "POST",

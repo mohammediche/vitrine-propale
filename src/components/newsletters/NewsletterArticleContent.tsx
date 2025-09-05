@@ -42,10 +42,6 @@ const NewsletterArticleContent = ({ article, articleId, allArticles }: Newslette
     console.log('Paiement réussi ! Article débloqué.');
   };
 
-  const handleSubscribeClick = () => {
-    console.log('Abonnement à la newsletter');
-  };
-
   return (
     <>
       <section className="py-16 bg-white dark:bg-transparent">
@@ -77,7 +73,7 @@ const NewsletterArticleContent = ({ article, articleId, allArticles }: Newslette
               transition={{ duration: 0.7, delay: 0.2 }}
               className="w-full lg:w-1/3 lg:sticky top-28 h-fit"
             >
-              <NewsletterSubscription onSubscribeClick={handleSubscribeClick} />
+              <NewsletterSubscription />
               <OtherArticles currentArticleId={articleId} allArticles={allArticles} />
             </motion.aside>
           </div>
