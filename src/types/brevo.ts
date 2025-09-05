@@ -15,6 +15,10 @@ export interface ContactFormData {
     message?: string;
   }
   
+  export interface SubscribeFormData {
+    email: string;
+  }
+  
   export interface BrevoEmail {
     sender: {
       name: string;
