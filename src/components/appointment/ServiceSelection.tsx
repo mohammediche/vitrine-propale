@@ -30,14 +30,17 @@ const ServiceSelection = ({ control }: ServiceSelectionProps) => {
         control={control}
         render={({ field }) => (
           <RadioGroup
-            onValueChange={field.onChange}
-            value={field.value}
+            onValueChange={(value) => {
+              const selectedService = services.find(s => s.name === value);
+              field.onChange(selectedService || value);
+            }}
+            value={typeof field.value === 'object' ? field.value.name : field.value}
             className="space-y-4"
           >
             {services.map(service => (
               <div 
                 key={service.id} 
-                onClick={() => field.onChange(service.name)}
+                onClick={() => field.onChange(service)}
                 className="flex items-center p-4 border rounded-lg cursor-pointer transition-colors bg-gray-50 dark:bg-gray-800/50 border-gray-200 dark:border-gray-700 hover:bg-blue-50 dark:hover:bg-gray-700 text-gray-800 dark:text-gray-300 data-[state=checked]:bg-blue-50 dark:data-[state=checked]:bg-blue-900/50 data-[state=checked]:border-blue-500 dark:data-[state=checked]:border-blue-400"
               >
                 <RadioGroupItem value={service.name} id={service.id} />
