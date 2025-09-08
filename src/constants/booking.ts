@@ -4,7 +4,7 @@ export const BOOKING_CONSTANTS = {
   DEFAULT_DURATION_MINUTES: 60,
   DEFAULT_LOCATION: 'En ligne',
   DEFAULT_TIMEZONE: 'Europe/Paris',
-  DEFAULT_ORGANIZER_EMAIL: 'amiraichedeveloper@gmail.com',
+  DEFAULT_ORGANIZER_EMAIL: process.env.FROM_EMAIL,
   SEND_CALCOM_EMAILS: false, // Always use custom emails instead of Cal.com defaults
   
   // Metadata to disable Cal.com standard emails (all values must be strings)
