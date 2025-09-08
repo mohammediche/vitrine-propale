@@ -1,5 +1,6 @@
 import { CalComBooking } from '@/types/calcom';
 import { BookingFallbackData, ServiceInfo, BOOKING_CONSTANTS } from '@/constants/booking';
+import { calComUtils } from '@/lib/calcom';
 
 /**
  * Creates a fallback booking object when Cal.com booking is not available
@@ -49,7 +50,7 @@ export function createBookingFromAppointment(appointmentData: {
     ? appointmentData.service.name 
     : appointmentData.service;
     
-  const startTime = new Date(`${appointmentData.date.toISOString().split('T')[0]}T${appointmentData.time}`);
+  const startTime = new Date(`${calComUtils.formatDateForAPI(appointmentData.date)}T${appointmentData.time}:00`);
   const endTime = new Date(startTime.getTime() + BOOKING_CONSTANTS.DEFAULT_DURATION_MINUTES * 60 * 1000);
   
   return {

@@ -10,6 +10,7 @@ import 'dayjs/locale/fr';
 import { Control, Controller, UseFormSetValue, UseFormWatch } from 'react-hook-form';
 import { AppointmentFormData } from '@/resolvers/appointment-form-validator';
 import { CalComSlot } from '@/types/calcom';
+import { calComUtils } from '@/lib/calcom';
 
 dayjs.extend(localizedFormat);
 dayjs.locale('fr');
@@ -19,6 +20,9 @@ interface DateTimeSelectionProps {
   setValue: UseFormSetValue<AppointmentFormData>;
   watch: UseFormWatch<AppointmentFormData>;
 }
+
+// Constants
+const TIMEZONE = 'Europe/Paris';
 
 const DateTimeSelection = ({ control, setValue, watch }: DateTimeSelectionProps) => {
   const [availableSlots, setAvailableSlots] = useState<string[]>([]);
@@ -32,7 +36,9 @@ const DateTimeSelection = ({ control, setValue, watch }: DateTimeSelectionProps)
   // Fetch available slots when date changes
   useEffect(() => {
     if (selectedDate && typeof selectedService === 'object' && selectedService?.calComId) {
-      fetchAvailableSlots(selectedService.calComId, selectedDate.toISOString().split('T')[0]);
+      // Format date in local timezone to avoid UTC conversion issues
+      const dateString = calComUtils.formatDateForAPI(selectedDate);
+      fetchAvailableSlots(selectedService.calComId, dateString);
     } else {
       // Reset time slots if no date is selected
       setAvailableSlots([]);
@@ -45,8 +51,6 @@ const DateTimeSelection = ({ control, setValue, watch }: DateTimeSelectionProps)
     setError(null);
     
     try {
-        // Use Europe/Paris timezone to match Cal.com settings
-  const userTimezone = 'Europe/Paris';
       
       // Call our API route instead of Cal.com directly (to avoid CORS)
       const response = await fetch(`/api/slots?eventTypeId=${eventTypeId}&date=${date}`);
@@ -57,14 +61,22 @@ const DateTimeSelection = ({ control, setValue, watch }: DateTimeSelectionProps)
       }
       
       const slots = result.slots;
-      if (!slots || Object.keys(slots).length === 0) {
+      
+      if (!slots || (Array.isArray(slots) ? slots.length === 0 : Object.keys(slots).length === 0)) {
         setAvailableSlots([]);
         return;
       }
 
-      // Extract slots from the date-grouped object
-      // Cal.com returns slots grouped by date: { "2025-09-06": [{time: "..."}, ...] }
-      const allSlots = Object.values(slots).flat() as CalComSlot[];
+      // Cal.com now returns slots as an array directly from our API
+      let allSlots: CalComSlot[] = [];
+      
+      if (Array.isArray(slots)) {
+        // Direct array format (what our API now returns)
+        allSlots = slots;
+      } else {
+        // Fallback for object format (shouldn't happen with our API fix)
+        allSlots = Object.values(slots).flat() as CalComSlot[];
+      }
 
       if (allSlots.length === 0) {
         setAvailableSlots([]);
@@ -78,17 +90,11 @@ const DateTimeSelection = ({ control, setValue, watch }: DateTimeSelectionProps)
           hour: '2-digit',
           minute: '2-digit',
           hour12: false,
-          timeZone: userTimezone
+          timeZone: TIMEZONE
         });
       });
       
-      // Filter to only include your preferred time slots
-      const preferredSlots = ["09:00", "10:00", "11:00", "14:00", "15:00", "16:00", "17:00"];
-      const filteredSlots = formattedSlots.filter(slot => 
-        preferredSlots.includes(slot)
-      );
-      
-      setAvailableSlots(filteredSlots);
+      setAvailableSlots(formattedSlots);
     } catch (error) {
       console.error('Error fetching available slots:', error);
       setError(`Impossible de charger les créneaux disponibles`);
@@ -125,7 +131,7 @@ const DateTimeSelection = ({ control, setValue, watch }: DateTimeSelectionProps)
                 setValue('time', ''); // Reset time when date changes
               }}
               disabled={{ 
-                before: new Date(new Date().setHours(0, 0, 0, 0)) // Start of today
+                before: new Date() // Disable dates before today
               }}
               className="rounded-md border p-0 bg-white dark:bg-gray-800 dark:text-white dark:border-gray-700"
             />

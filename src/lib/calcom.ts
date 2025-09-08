@@ -38,7 +38,7 @@ import { CalComEventType, CalComSlot, CalComBookingRequest, CalComBooking } from
         startTime: string,
         endTime: string,
         timeZone?: string
-      ): Promise<CalComSlot[]> {
+      ): Promise<{ [date: string]: CalComSlot[] }> {
         try {
           const params = new URLSearchParams({
             eventTypeId: eventTypeId.toString(),
@@ -65,7 +65,7 @@ import { CalComEventType, CalComSlot, CalComBookingRequest, CalComBooking } from
           }
 
           const data = await response.json();
-          return data.slots || [];
+          return data.slots || {};
         } catch (error) {
           console.error('Error fetching slots:', error);
           throw new Error(`Failed to fetch slots`);
@@ -132,6 +132,14 @@ import { CalComEventType, CalComSlot, CalComBookingRequest, CalComBooking } from
   // Utility functions
  // Add this to your existing calComUtils
 export const calComUtils = {
+  // Format date in local timezone for API calls to avoid UTC conversion issues
+  formatDateForAPI(date: Date): string {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  },
+
   generateCalendarLinks(booking: CalComBooking, serviceName?: string) {
     const startTime = new Date(booking.startTime);
     const endTime = new Date(booking.endTime);

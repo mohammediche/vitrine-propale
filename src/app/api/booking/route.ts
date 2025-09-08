@@ -30,12 +30,11 @@ export async function POST(request: NextRequest) {
       await sendCustomConfirmationEmail(recipientEmail, bookingForEmail, calendarLinks, serviceName, false);
       await sendCustomConfirmationEmail(BOOKING_CONSTANTS.DEFAULT_ORGANIZER_EMAIL, bookingForEmail, calendarLinks, serviceName, true);
     } catch (emailError) {
-      console.error('Email failed:', emailError);
+      // Email sending failed, but booking was successful
     }
     
     return NextResponse.json({ success: true, booking });
   } catch (error) {
-    console.error('Booking error:', error);
     return NextResponse.json({ error: 'Failed to create booking' }, { status: 500 });
   }
 }

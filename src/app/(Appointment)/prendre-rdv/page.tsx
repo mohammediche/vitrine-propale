@@ -6,6 +6,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { appointmentFormResolver, AppointmentFormData } from '@/resolvers/appointment-form-validator';
+import { calComUtils } from '@/lib/calcom';
 
 // Composants
 import ServiceSelection from '@/components/appointment/ServiceSelection';
@@ -53,8 +54,8 @@ const AppointmentPage = () => {
     setBookingError(null);
     
     try {
-      // Create start time from date and time
-      const dateStr = data.date.toISOString().split('T')[0];
+      // Create start time from date and time in user's local timezone
+      const dateStr = calComUtils.formatDateForAPI(data.date);
       const startTimeString = `${dateStr}T${data.time}:00`;
       const startTime = new Date(startTimeString);
       
@@ -84,7 +85,7 @@ const AppointmentPage = () => {
         eventTypeId: service.calComId,
         start: startTime.toISOString(),
         end: endTime.toISOString(),
-        timeZone: BOOKING_CONSTANTS.DEFAULT_TIMEZONE,
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
         language: 'fr',
      
         metadata: {
