@@ -44,7 +44,7 @@ const DateTimeSelection = ({ control, setValue, watch }: DateTimeSelectionProps)
       setAvailableSlots([]);
       setValue('time', '');
     }
-  }, [selectedDate, selectedService]);
+  }, [selectedDate, selectedService, setValue]);
 
   const fetchAvailableSlots = async (eventTypeId: number, date: string) => {
     setLoading(true);

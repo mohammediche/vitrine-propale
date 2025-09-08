@@ -33,12 +33,12 @@ export interface CalComEventType {
     end: string;
     timeZone: string;
     language: string;
-    metadata: Record<string, any>;
+    metadata: Record<string, unknown>;
     sendEmails?: boolean;
     responses: {
       name: string;
       email: string;
       notes?: string;
-      [key: string]: any;
+      [key: string]: unknown;
     };
   }

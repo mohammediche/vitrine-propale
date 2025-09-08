@@ -16,25 +16,23 @@ export async function POST(request: NextRequest) {
     const booking = await calComApi.createBooking(bookingData);
     
     // Send confirmation emails
-    try {
-      const serviceName = getServiceName(booking?.title || 'Rendez-vous KATECH');
-      const recipientEmail = bookingData.responses.email;
-      
-      const bookingForEmail = (!booking || !booking.startTime) 
-        ? createFallbackBooking(bookingData, serviceName)
-        : booking;
-      
-      const calendarLinks = calComUtils.generateCalendarLinks(bookingForEmail, serviceName);
-      
-      // Send emails
-      await sendCustomConfirmationEmail(recipientEmail, bookingForEmail, calendarLinks, serviceName, false);
+    const serviceName = getServiceName(booking?.title || 'Rendez-vous KATECH');
+    const recipientEmail = bookingData.responses.email;
+    
+    const bookingForEmail = (!booking || !booking.startTime) 
+      ? createFallbackBooking(bookingData, serviceName)
+      : booking;
+    
+    const calendarLinks = calComUtils.generateCalendarLinks(bookingForEmail, serviceName);
+    
+    // Send emails
+    await sendCustomConfirmationEmail(recipientEmail, bookingForEmail, calendarLinks, serviceName, false);
+    if (BOOKING_CONSTANTS.DEFAULT_ORGANIZER_EMAIL) {
       await sendCustomConfirmationEmail(BOOKING_CONSTANTS.DEFAULT_ORGANIZER_EMAIL, bookingForEmail, calendarLinks, serviceName, true);
-    } catch (emailError) {
-      // Email sending failed, but booking was successful
     }
     
     return NextResponse.json({ success: true, booking });
-  } catch (error) {
+  } catch {
     return NextResponse.json({ error: 'Failed to create booking' }, { status: 500 });
   }
 }

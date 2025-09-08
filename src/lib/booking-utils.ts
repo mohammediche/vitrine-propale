@@ -12,8 +12,6 @@ export function createFallbackBooking(
   bookingData: BookingFallbackData,
   serviceName: string
 ): CalComBooking {
-  const startTime = new Date(bookingData.start);
-  const endTime = new Date(bookingData.end);
   
   return {
     id: Date.now(),

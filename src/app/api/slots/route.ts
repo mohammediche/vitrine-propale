@@ -40,6 +40,7 @@ export async function GET(request: NextRequest) {
     return NextResponse.json({ success: true, slots });
     
   } catch (error) {
+    console.error('Error fetching slots:', error);
     return NextResponse.json({ 
       success: false,
       error: 'Failed to fetch available slots' 
