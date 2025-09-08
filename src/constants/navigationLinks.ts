@@ -1,12 +1,12 @@
 import { Building2, BookOpenCheck, Cpu, Bot, School, Megaphone } from 'lucide-react';
 
 export const services = [
-    { id: 'structuration-jeune-entreprise', name: "Structuration & Jeune entreprise", icon: Building2 },
-    { id: 'conseil-audit', name: "Conseil & Audit", icon: BookOpenCheck },
-    { id: 'services-informatiques', name: "Services Informatiques", icon: Cpu },
-    { id: 'robot-intelligent', name: "Robot Intelligent", icon: Bot, isPremium: true },
-    { id: 'formation', name: "Formation", icon: School },
-    { id: 'marketing-communication', name: "Marketing & Communication", icon: Megaphone }
+    { id: 'structuration-jeune-entreprise', name: "Structuration & Jeune entreprise", icon: Building2,calComId: 3227876, duration: 60,  }, 
+    { id: 'conseil-audit', name: "Conseil & Audit", icon: BookOpenCheck,calComId: 3227875,  duration: 60, },
+    { id: 'services-informatiques', name: "Services Informatiques", icon: Cpu ,calComId: 3260707,duration: 60},
+    { id: 'robot-intelligent', name: "Robot Intelligent", icon: Bot, isPremium: true ,calComId: 3260717,duration: 60 },
+    { id: 'formation', name: "Formation", icon: School ,calComId: 3260720,duration: 60 },
+    { id: 'marketing-communication', name: "Marketing & Communication", icon: Megaphone ,calComId: 3260725,duration: 60 }
   ];
 
 export const company = [

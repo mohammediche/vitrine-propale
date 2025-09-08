@@ -14,7 +14,7 @@ interface BrevoEmailPayload {
           'api-key': process.env.BREVO_API_KEY!,
         },
         body: JSON.stringify({
-          sender: { email: process.env.FROM_EMAIL!, name: 'propale.io' },
+          sender: { email: process.env.FROM_EMAIL!, name: 'katech' },
           ...payload,
         }),
       })

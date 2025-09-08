@@ -134,7 +134,7 @@ const Header = () => {
             </Button>
             <Button
               size="sm"
-              onClick={() => navigateTo('/')}
+              onClick={() => navigateTo('/prendre-rdv')}
               className="btn-primary pulse-animation rounded-[12px] text-xs px-3"
             >
               Prendre RDV

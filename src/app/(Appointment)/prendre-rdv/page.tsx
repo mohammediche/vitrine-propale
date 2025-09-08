@@ -6,6 +6,7 @@ import { useTheme } from '@/contexts/ThemeContext';
 import Image from 'next/image';
 import { useForm } from 'react-hook-form';
 import { appointmentFormResolver, AppointmentFormData } from '@/resolvers/appointment-form-validator';
+import { calComUtils } from '@/lib/calcom';
 
 // Composants
 import ServiceSelection from '@/components/appointment/ServiceSelection';
@@ -14,11 +15,14 @@ import ContactForm from '@/components/appointment/ContactForm';
 import Confirmation from '@/components/appointment/Confirmation';
 import ProgressBar from '@/components/appointment/ProgressBar';
 import NavigationButtons from '@/components/appointment/NavigationButtons';
+import { CalComBookingRequest } from '@/types/calcom';
+import { BOOKING_CONSTANTS } from '@/constants/booking';
 
 const AppointmentPage = () => {
   const { theme } = useTheme();
   const [step, setStep] = useState(1);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [bookingError, setBookingError] = useState<string | null>(null);
   const totalSteps = 4;
 
   const {
@@ -47,31 +51,90 @@ const AppointmentPage = () => {
 
   const onSubmit = async (data: AppointmentFormData) => {
     setIsSubmitting(true);
+    setBookingError(null);
     
     try {
-      // Simulation d'un délai d'API
-      await new Promise(resolve => setTimeout(resolve, 1000));
+      // Create start time from date and time in user's local timezone
+      const dateStr = calComUtils.formatDateForAPI(data.date);
+      const startTimeString = `${dateStr}T${data.time}:00`;
+      const startTime = new Date(startTimeString);
       
-      const appointmentData = { ...data, id: new Date().toISOString() };
+      if (isNaN(startTime.getTime())) {
+        throw new Error('Invalid date or time format');
+      }
       
-      // Stockage local (simulation)
-      const existingAppointments = JSON.parse(localStorage.getItem('appointments') || '[]');
-      localStorage.setItem('appointments', JSON.stringify([...existingAppointments, appointmentData]));
-
-      console.log('Rendez-vous confirmé:', appointmentData);
-      handleNext();
+      // Check if booking time is in the past (with 5-minute buffer)
+      const now = new Date();
+      const fiveMinutesFromNow = new Date(now.getTime() + 5 * 60 * 1000);
+      
+      if (startTime <= fiveMinutesFromNow) {
+        throw new Error('Impossible de réserver un créneau dans le passé. Veuillez choisir une date et heure futures.');
+      }
+      
+      // Get service details
+      const service = typeof data.service === 'object' ? data.service : null;
+      if (!service || !service.calComId) {
+        throw new Error('Service not properly selected');
+      }
+      
+      const serviceDuration = service.duration || BOOKING_CONSTANTS.DEFAULT_DURATION_MINUTES;
+      const endTime = new Date(startTime.getTime() + (serviceDuration * 60000));
+      
+      // Prepare booking request
+      const bookingRequest: CalComBookingRequest = {
+        eventTypeId: service.calComId,
+        start: startTime.toISOString(),
+        end: endTime.toISOString(),
+        timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+        language: 'fr',
+     
+        metadata: {
+          // Try multiple approaches to disable Cal.com emails
+          'disable-emails': 'true',
+          'no-email': 'true',
+          'skip-email': 'true',
+          'disable-notifications': 'true',
+          'send-email': 'false'
+        },
+        sendEmails: false,
+        responses: {
+          name: data.name,
+          email: data.email,
+          notes: data.details || '',
+          company: data.company || '',
+        },
+      };
+      
+      // Create booking
+      const response = await fetch('/api/booking', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(bookingRequest),
+      });
+      
+      const result = await response.json();
+      
+      if (response.ok) {
+        handleNext();
+      } else {
+        setBookingError(result.error || 'Booking failed. Please try again.');
+      }
     } catch (error) {
-      console.error('Erreur lors de la confirmation:', error);
-      alert('Erreur lors de la confirmation. Veuillez réessayer.');
+      console.error('Booking error:', error);
+      setBookingError(error instanceof Error ? error.message : 'An unexpected error occurred. Please try again.');
     } finally {
       setIsSubmitting(false);
     }
   };
 
+
   const isStepValid = () => {
     switch (step) {
       case 1:
-        return watchedValues.service !== '';
+        return watchedValues.service !== '' && 
+               (typeof watchedValues.service === 'object' ? 
+                 !!watchedValues.service.calComId : 
+                 false);
       case 2:
         return watchedValues.date && watchedValues.time !== '';
       case 3:
@@ -124,6 +187,13 @@ const AppointmentPage = () => {
               {renderStep()}
             </div>
           </AnimatePresence>
+
+
+          {bookingError && (
+            <div className="mt-4 p-3 bg-red-100 dark:bg-red-900/30 border border-red-200 dark:border-red-800 rounded-lg text-red-700 dark:text-red-300">
+              {bookingError}
+            </div>
+          )}
 
           <NavigationButtons
             currentStep={step}
