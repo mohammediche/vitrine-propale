@@ -91,7 +91,7 @@ html.light body {
 }
 
 html.dark body {
-    background-color: var(--dark-blue-uniform);
+    background: linear-gradient(135deg, #050B0C 0%, #081038 100%);
 }
 
 .dark-mode-bg {

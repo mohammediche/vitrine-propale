@@ -60,15 +60,15 @@ function Calendar({ selected, onSelect, disabled, className }: CalendarProps) {
     <div className={`p-4 ${className}`}>
       {/* Header avec navigation */}
       <div className="flex items-center justify-between mb-4">
-        <button onClick={prevMonth} className="p-2 rounded hover:bg-gray-100 transition-colors">
+        <button onClick={prevMonth} className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-700 dark:text-gray-300">
           <ChevronLeft className="h-4 w-4" />
         </button>
         
-        <h2 className="text-lg font-semibold">
+        <h2 className="text-lg font-semibold text-gray-900 dark:text-white">
           {currentMonth.format('MMMM YYYY')}
         </h2>
         
-        <button onClick={nextMonth} className="p-2 rounded hover:bg-gray-100 transition-colors">
+        <button onClick={nextMonth} className="p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors text-gray-700 dark:text-gray-300">
           <ChevronRight className="h-4 w-4" />
         </button>
       </div>
@@ -76,7 +76,7 @@ function Calendar({ selected, onSelect, disabled, className }: CalendarProps) {
       {/* Jours de la semaine */}
       <div className="grid grid-cols-7 gap-1 mb-2">
         {['lu', 'ma', 'me', 'je', 've', 'sa', 'di'].map((day) => (
-          <div key={day} className="text-center text-sm font-medium text-gray-600 py-2">
+          <div key={day} className="text-center text-sm font-medium text-gray-600 dark:text-gray-400 py-2">
             {day}
           </div>
         ))}
@@ -97,19 +97,19 @@ function Calendar({ selected, onSelect, disabled, className }: CalendarProps) {
               className={`
                 h-9 w-9 rounded-md text-sm font-normal transition-colors
                 ${isCurrentMonth 
-                  ? 'text-gray-900 hover:bg-gray-100' 
-                  : 'text-gray-400'
+                  ? 'text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700' 
+                  : 'text-gray-400 dark:text-gray-500'
                 }
                 ${isSelected 
-                  ? 'bg-blue-600 text-white hover:bg-blue-700' 
+                  ? 'bg-blue-600 dark:bg-blue-500 text-white hover:bg-blue-700 dark:hover:bg-blue-600' 
                   : ''
                 }
                 ${isCurrentDay && !isSelected 
-                  ? 'bg-gray-100 text-gray-900' 
+                  ? 'bg-gray-100 dark:bg-gray-700 text-gray-900 dark:text-white' 
                   : ''
                 }
                 ${isDisabled 
-                  ? 'text-gray-300 cursor-not-allowed' 
+                  ? 'text-gray-300 dark:text-gray-600 cursor-not-allowed' 
                   : 'cursor-pointer'
                 }
               `}
