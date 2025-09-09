@@ -161,10 +161,10 @@ const Footer = () => {
               {footerLinks.legal.map((link, index) => (
                 <li key={index}>
                   <button
-                    onClick={() => navigateTo(`/services/${link}`)}
+                    onClick={() => navigateTo(link.path)}
                     className="text-gray-400 hover:text-blue-400 transition-colors duration-300 text-left"
                   >
-                    {link}
+                    {link.name}
                   </button>
                 </li>
               ))}

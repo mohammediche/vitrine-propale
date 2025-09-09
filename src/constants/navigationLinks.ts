@@ -22,13 +22,14 @@ export const resources = [
     { name: 'Webinaires', path: '#' },
     { name: 'FAQ', path: '#' }
   ];
-export const legal = [
-    'Mentions légales',
-    'Politique de confidentialité',
-    'Conditions d\'utilisation',
-    'Cookies',
-    'RGPD'
-];
+  export const legal = [
+    { name: "Mentions légales", path: "/legal/mentions-legales" },
+    { name: "Politique de confidentialité", path: "/legal/politique-de-confidentialite" },
+    { name: "Conditions d'utilisation", path: "/legal/conditions-utilisation" },
+    { name: "Politique de Cookies", path: "/legal/politique-cookies" },
+    { name: "RGPD", path: "/legal/rgpd" },
+  ];
+  
 export const footerLinks = {
     services,
     company,
