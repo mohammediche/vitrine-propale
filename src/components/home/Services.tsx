@@ -4,7 +4,6 @@ import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
 import { Building2, BookOpenCheck, Cpu, Bot, School, Megaphone } from 'lucide-react';
 import ConsultationCTA from '../banner/ConsultationCTA';
-import { useRouter } from 'next/navigation';
 
 export const services = [{
     id: 'structuration-jeune-entreprise',
@@ -47,11 +46,7 @@ export const services = [{
 const Services = () => {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: true });
-  const router = useRouter();
 
-  const handleConsultationClick = () => {
-    router.push('/');
-  };
   return <section ref={ref} className="py-20 bg-gray-50 dark:bg-transparent">
       <div className="container mx-auto px-6">
         <motion.div initial={{
@@ -114,7 +109,7 @@ const Services = () => {
               </Link>
             </motion.div>)}
         </div>
-        <ConsultationCTA handleConsultationClick={handleConsultationClick} isInView={isInView}/>
+        <ConsultationCTA isInView={isInView}/>
 
       </div>
     </section>;

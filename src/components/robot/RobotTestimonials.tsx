@@ -65,7 +65,7 @@ const RobotTestimonials = () => {
             </blockquote>
             <div className="flex items-center gap-4">
               <Image
-                src="/logo.svg"
+                src={currentTestimonial.image}
                 alt={`Photo de ${currentTestimonial.name}`}
                 width={64}
                 height={64}

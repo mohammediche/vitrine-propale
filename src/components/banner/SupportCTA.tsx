@@ -28,7 +28,7 @@ const SupportCTA = ({isInView}: SupportCTAProps) => {
           Notre équipe d&apos;experts est là pour répondre à toutes vos interrogations et vous accompagner dans votre réflexion.
         </p>
         <Button
-           onClick={()=> navigateTo('/')}
+           onClick={()=> navigateTo('/contact')}
           size="lg"
           className="btn-primary text-lg px-8 py-4 rounded-full"
         >

@@ -8,6 +8,7 @@ import RobotTestimonials from '@/components/robot/RobotTestimonials';
 import AnatomyOfARobot from '@/components/robot/AnatomyOfARobot';
 import RobotContactForm from '@/components/robot/RobotContactForm';
 import Link from 'next/link';
+import { useNavigate } from '@/hooks/useNavigate';
 import { 
   servicesIA, 
   processSteps, 
@@ -16,6 +17,8 @@ import {
 } from '@/constants/robot';
 
 const RobotIAPage = () => {
+  const { navigateTo } = useNavigate();
+  
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -179,7 +182,11 @@ const RobotIAPage = () => {
           <div className="container mx-auto px-6 text-center">
             <h2 className="text-3xl md:text-4xl font-bold text-white">Prêt à intégrer l&apos;IA dans votre stratégie ?</h2>
             <p className="text-lg text-gray-400 mt-4 mb-8 max-w-2xl mx-auto">Discutons de la manière dont nos solutions peuvent transformer votre entreprise et vous donner un avantage concurrentiel décisif.</p>
-            <Button size="lg" className="bg-[var(--accent-gold)] text-black font-bold hover:bg-[var(--accent-gold)]/90 group">
+            <Button 
+              size="lg" 
+              className="bg-[var(--accent-gold)] text-black font-bold hover:bg-[var(--accent-gold)]/90 group"
+              onClick={() => navigateTo('/prendre-rdv')}
+            >
               Planifier un audit stratégique <ArrowRight className="ml-2 w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </Button>
           </div>

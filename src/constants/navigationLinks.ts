@@ -19,8 +19,7 @@ export const resources = [
     { name: 'Newsletters', path: '/newsletters' },
     { name: 'Blog', path: '/newsletters' },
     { name: 'Études de cas', path: '#' },
-    { name: 'Webinaires', path: '#' },
-    { name: 'FAQ', path: '#' }
+    { name: 'FAQ', path: '/home#faq' }
   ];
   export const legal = [
     { name: "Mentions légales", path: "/legal/mentions-legales" },

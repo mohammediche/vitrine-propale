@@ -75,7 +75,7 @@ const Testimonials = () => {
                 className="flex items-center justify-center gap-4"
               >
                  <Image
-                    src="/logo.svg"
+                    src={testimonials[currentIndex].image}
                     alt={`Photo de ${testimonials[currentIndex].name}`}
                     width={120}
                     height={32}

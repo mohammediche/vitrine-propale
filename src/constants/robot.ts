@@ -123,20 +123,23 @@ export const testimonials = [
     position: "Directeur R&D, Innovatech",
     text: "L'équipe IA de KATECH a développé un algorithme prédictif qui a augmenté notre efficacité opérationnelle de 30%. Une véritable révolution pour nous.",
     company: "Innovatech",
-    rating: 5
+    rating: 5,
+    image: "/member2.webp"
   },
   {
     name: "Carla Rossi",
     position: "Fondatrice, LogiBot",
     text: "Leur expertise en automatisation intelligente nous a permis de réduire nos coûts de traitement de 50% en seulement 6 mois. Un partenaire indispensable.",
     company: "LogiBot",
-    rating: 5
+    rating: 5,
+    image: "/member1.webp"
   },
   {
     name: "David Chen",
     position: "CTO, HealthAI",
     text: "Grâce à leur solution de vision par ordinateur, la précision de nos diagnostics a fait un bond en avant. KATECH est à la pointe de la technologie.",
     company: "HealthAI",
-    rating: 5
+    rating: 5,
+    image: "/member4.webp",
   }
 ];

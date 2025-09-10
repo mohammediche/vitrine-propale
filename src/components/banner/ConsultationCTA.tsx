@@ -1,13 +1,14 @@
 "use client";
 import React from 'react';
 import { motion} from 'framer-motion';
+import { useNavigate } from '@/hooks/useNavigate';
 
 interface ConsultationCTAProps {
-  handleConsultationClick: () => void;
   isInView: boolean;
 }
 
-const ConsultationCTA = ({ handleConsultationClick, isInView }: ConsultationCTAProps) => {
+const ConsultationCTA = ({ isInView }: ConsultationCTAProps) => {
+  const {navigateTo} = useNavigate();
 
   return (
     <motion.div initial={{
@@ -27,7 +28,7 @@ const ConsultationCTA = ({ handleConsultationClick, isInView }: ConsultationCTAP
             <p className="text-xl text-white/90 mb-8 max-w-2xl mx-auto">
               Nos experts analysent votre situation unique et créent une stratégie personnalisée pour maximiser votre potentiel.
             </p>
-            <motion.button onClick={handleConsultationClick} whileHover={{
+            <motion.button onClick={() => navigateTo('/prendre-rdv')} whileHover={{
             scale: 1.05
           }} whileTap={{
             scale: 0.95

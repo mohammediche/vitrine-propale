@@ -5,7 +5,7 @@ export const testimonials = [
       company: "Startup Fintech",
       rating: 5,
       text: "KATECH a transformé notre vision en réalité. Grâce à leur accompagnement, nous avons levé 2M€ et multiplié notre chiffre d'affaires par 5 en 18 mois.",
-      image: "Professional businesswoman CEO in modern office setting"
+      image: "/member1.webp"
     },
     {
       name: "Pierre Martin",
@@ -13,7 +13,7 @@ export const testimonials = [
       company: "Cleantech",
       rating: 5,
       text: "L'expertise de KATECH en développement durable nous a permis de devenir leader sur notre marché. Leur réseau d'investisseurs est exceptionnel.",
-      image: "Successful entrepreneur founder in sustainable technology company"
+      image: "/member2.webp"
     },
     {
       name: "Sophie Chen",
@@ -21,7 +21,7 @@ export const testimonials = [
       company: "Medtech",
       rating: 5,
       text: "Accompagnement stratégique remarquable. KATECH nous a aidés à naviguer les réglementations complexes et à accélérer notre time-to-market.",
-      image: "Innovation director in medical technology company"
+      image: "/member3.webp"
     },
     {
       name: "Thomas Leroy",
@@ -29,6 +29,6 @@ export const testimonials = [
       company: "SaaS B2B",
       rating: 5,
       text: "Grâce à KATECH, nous avons structuré notre croissance internationale. Leur approche méthodique et leurs conseils ont été déterminants.",
-      image: "Tech co-founder in modern SaaS company office"
+      image: "/member4.webp"
     }
   ];
