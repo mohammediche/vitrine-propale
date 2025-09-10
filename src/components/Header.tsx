@@ -52,7 +52,7 @@ const Header = () => {
               whileHover={{ scale: 1.05 }}
             >
               <Image
-                src="/logo.svg"
+                src={theme === 'dark' ? "/logo-katech-b.svg" : "/logo-katech.svg"}
                 alt="KATECH Logo"
                 width={120}
                 height={32}
@@ -62,7 +62,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex flex-grow items-center justify-center space-x-5">
+          <div className="desktop-nav absolute left-1/2 transform -translate-x-1/2 items-center space-x-5">
             <Link href="/home" className={`${navLinkClasses} ${pathname === '/home' ? activeNavLinkClasses : ''}`}>
               Accueil
             </Link>
@@ -123,11 +123,11 @@ const Header = () => {
               </Link>
           </div>
 
-          <div className="hidden md:flex items-center space-x-2 flex-shrink-0">
+          <div className="desktop-nav items-center space-x-2 flex-shrink-0">
             <Button
               size="sm"
               variant="outline"
-              onClick={() => navigateTo('/')}
+              onClick={() => window.open('https://www.propale.co', '_blank')}
               className="btn-secondary rounded-[12px] text-xs px-3"
             >
               Découvrez Propale
@@ -145,7 +145,7 @@ const Header = () => {
           </div>
 
           {/* Mobile Menu Button and Theme Toggle */}
-          <div className="md:hidden flex items-center space-x-2">
+          <div className="mobile-nav items-center space-x-2">
             <button onClick={toggleTheme} className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 text-gray-800 dark:text-gray-200">
               {theme === 'light' ? <Moon size={18} /> : <Sun size={18} />}
             </button>
@@ -165,7 +165,7 @@ const Header = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden mt-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg rounded-lg p-4 overflow-hidden"
+             className="mobile-nav mt-4 bg-white/80 dark:bg-gray-900/80 backdrop-blur-lg rounded-lg p-4 overflow-hidden"
           >
             <div className="flex flex-col space-y-4">
               <Link href="/home" className="text-left text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-amber-400 transition-colors duration-300" onClick={closeAllMenus}>Accueil</Link>
@@ -197,7 +197,7 @@ const Header = () => {
               <Link href="/recrutement/orientation" className="text-left text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-amber-400 transition-colors duration-300" onClick={closeAllMenus}>Recrutement</Link>
               <Link href="/contact" className="text-left text-gray-700 dark:text-gray-200 hover:text-blue-600 dark:hover:text-amber-400 transition-colors duration-300" onClick={closeAllMenus}>Contact</Link>
               <div className="flex flex-col space-y-2 pt-4 border-t border-gray-200 dark:border-gray-700">
-                <Button variant="outline" onClick={() => navigateTo('/')} className="btn-secondary rounded-[12px]">Découvrez Propale</Button>
+                <Button variant="outline" onClick={() => window.open('https://www.propale.co', '_blank')} className="btn-secondary rounded-[12px]">Découvrez Propale</Button>
                 <Button onClick={() => navigateTo('/')} className="btn-primary rounded-[12px]">Prendre RDV</Button>
               </div>
             </div>

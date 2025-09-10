@@ -61,19 +61,6 @@ const PremiumFunnel = () => {
     return path;
   };
 
-  const flowVariants = {
-    hidden: { y: "0%", opacity: 0 },
-    visible: {
-      y: "400%",
-      opacity: [0, 1, 1, 0],
-      transition: {
-        duration: 4,
-        ease: "linear" as const,
-        times: [0, 0.2, 0.8, 1],
-        delay: 1,
-      },
-    },
-  };
 
   return (
     <div ref={ref} className="w-full flex justify-center items-center">
@@ -119,15 +106,6 @@ const PremiumFunnel = () => {
           </motion.g>
         ))}
         
-        <motion.circle
-          r="4"
-          fill="var(--accent-gold)"
-          filter="url(#glow)"
-          initial="hidden"
-          animate={isInView ? "visible" : "hidden"}
-          variants={flowVariants}
-          cx="50"
-        />
       </svg>
     </div>
   );

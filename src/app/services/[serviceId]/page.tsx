@@ -134,10 +134,16 @@ const ServicePage = ({ params }: ServicePageProps) => {
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.1 * index }}
-                        className="bg-gray-50 dark:bg-gray-900/50 p-8 rounded-xl border border-gray-100 dark:border-gray-800"
                     >
-                        <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{c.title}</h3>
-                        <p className="text-gray-600 dark:text-gray-300">{c.description}</p>
+                        <Link href={`/services/${serviceId}/case-studies/${c.slug}`} className="block h-full">
+                            <motion.div 
+                                whileHover={{ y: -5, scale: 1.02 }}
+                                className="bg-gray-50 dark:bg-gray-900/50 p-8 rounded-xl border border-gray-100 dark:border-gray-800 hover:shadow-lg transition-all duration-300 cursor-pointer h-full"
+                            >
+                                <h3 className="text-xl font-bold mb-3 text-gray-900 dark:text-white">{c.title}</h3>
+                                <p className="text-gray-600 dark:text-gray-300">{c.description}</p>
+                            </motion.div>
+                        </Link>
                     </motion.div>
                 ))}
             </div>

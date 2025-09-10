@@ -3,6 +3,23 @@
 @tailwind components;
 @tailwind utilities;
 
+.desktop-nav {
+  display: flex !important;
+}
+
+.mobile-nav {
+  display: none !important;
+}
+
+@media (max-width: 1100px) {
+  .desktop-nav {
+    display: none !important;
+  }
+
+  .mobile-nav {
+    display: block !important;
+  }
+}
 :root {
   --primary-bg: #EDF0F6;
   --secondary-bg: #CCD3E9;

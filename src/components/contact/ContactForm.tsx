@@ -9,6 +9,7 @@ import { Select } from '@/components/ui/select';
 import { useForm, Controller } from 'react-hook-form';
 import { contactFormResolver, ContactFormData } from '@/resolvers/contact-form-validator';
 import { sendContactForm } from '@/services/front/contact';
+import { services } from '@/constants/navigationLinks';
 
 const ContactForm = () => {
   const [submitStatus, setSubmitStatus] = useState<'initial' | 'loading' | 'success' | 'error'>('initial');
@@ -175,9 +176,11 @@ const ContactForm = () => {
                 className="dark:bg-gray-800 dark:border-gray-700 dark:text-white"
               >
                 <option value="" disabled>Sujet *</option>
-                <option value="audit-gratuit">Audit Gratuit</option>
-                <option value="conseil-strategique">Conseil Stratégique</option>
-                <option value="levee-de-fonds">Levée de Fonds</option>
+                {services.map((service) => (
+                  <option key={service.id} value={service.id}>
+                    {service.name}
+                  </option>
+                ))}
                 <option value="autre">Autre</option>
               </Select>
             )}

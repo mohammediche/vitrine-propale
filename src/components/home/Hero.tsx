@@ -1,7 +1,7 @@
 "use client";
-import React, { useState } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, Rocket } from 'lucide-react';
+import { ArrowRight, Sparkles } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useNavigate } from '@/hooks/useNavigate';
 import { stats } from '@/constants/stats';
@@ -9,21 +9,9 @@ import AnimatedNumber from '../ui/animatedNumber';
 
 const Hero = () => {
   const { navigateTo } = useNavigate();
-  const [animateRocket, setAnimateRocket] = useState(true);
 
   return (
     <section className={`min-h-screen flex items-center justify-center relative overflow-hidden pt-20 transition-colors duration-1000 dark:bg-transparent bg-blue-50`}>
-      {animateRocket && (
-         <motion.div
-            initial={{ x: '-100vw', y: '50vh', rotate: 45, scale: 1.5 }}
-            animate={{ x: '100vw', y: '-50vh', rotate: 45, scale: 0.5 }}
-            transition={{ duration: 2.5, ease: 'easeInOut' }}
-            className="absolute z-0 text-blue-400"
-            onAnimationComplete={() => setAnimateRocket(false)}
-        >
-            <Rocket className="w-32 h-32" />
-        </motion.div>
-      )}
 
       {/* Background Elements */}
       <div className="absolute inset-0 opacity-10 dark:opacity-20">
@@ -86,7 +74,7 @@ const Hero = () => {
             </Button>
             
             <Button
-              onClick={() => navigateTo('https://www.propale.co/')}
+              onClick={() => window.open('https://www.propale.co', '_blank')}
               variant="outline"
               size="lg"
               className="btn-secondary text-lg px-8 py-4 rounded-[12px]"

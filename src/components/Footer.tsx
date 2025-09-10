@@ -5,7 +5,6 @@ import Link from 'next/link';
 import Image from "next/image";
 import { 
   Linkedin, 
-  Twitter, 
   Facebook, 
   Instagram, 
   Mail, 
@@ -19,10 +18,9 @@ const Footer = () => {
     const { navigateTo } = useNavigate();
 
   const socialLinks = [
-    { icon: Linkedin, name: 'LinkedIn', color: 'hover:text-blue-400' },
-    { icon: Twitter, name: 'Twitter', color: 'hover:text-sky-400' },
-    { icon: Facebook, name: 'Facebook', color: 'hover:text-blue-600' },
-    { icon: Instagram, name: 'Instagram', color: 'hover:text-pink-500' }
+    { icon: Linkedin, name: 'LinkedIn', color: 'hover:text-blue-400', url: 'https://www.linkedin.com/company/katech-web/' },
+    { icon: Facebook, name: 'Facebook', color: 'hover:text-blue-600', url: 'https://www.facebook.com/profile.php/?id=61556774205064' },
+    { icon: Instagram, name: 'Instagram', color: 'hover:text-pink-500', url: 'https://www.instagram.com/katech.fr?igsh=MXRra24yZXJueWxlbA==' }
   ];
 
   return (
@@ -189,7 +187,7 @@ const Footer = () => {
               {socialLinks.map((social, index) => (
                 <motion.button
                   key={index}
-                  onClick={() => navigateTo(`/services/${social.name}`)}
+                  onClick={() => window.open(social.url, '_blank')}
                   whileHover={{ scale: 1.2, y: -2 }}
                   whileTap={{ scale: 0.9 }}
                   className={`w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center text-gray-400 ${social.color} transition-all duration-300 hover:bg-gray-700`}

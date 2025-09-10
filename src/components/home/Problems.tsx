@@ -2,7 +2,7 @@
 import React, { useRef } from 'react';
 import { motion, useInView } from 'framer-motion';
 import Link from 'next/link';
-import { AlertTriangle, TrendingDown, Clock, DollarSign, Users } from 'lucide-react';
+import { AlertTriangle, TrendingDown, Clock, DollarSign, Users, Megaphone } from 'lucide-react';
 
 
 export const problemsItems = [
@@ -45,6 +45,14 @@ export const problemsItems = [
     color: "text-indigo-600 dark:text-indigo-400",
     bgColor: "bg-indigo-100 dark:bg-indigo-900/50",
     link: "/services/services-informatiques"
+  },
+  {
+    icon: Megaphone,
+    title: "Marketing & Communication",
+    description: "Vous avez du mal à vous faire connaître et à attirer vos clients idéaux ?",
+    color: "text-purple-600 dark:text-purple-400",
+    bgColor: "bg-purple-100 dark:bg-purple-900/50",
+    link: "/services/marketing-communication"
   }
 ]; 
 

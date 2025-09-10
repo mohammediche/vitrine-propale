@@ -25,7 +25,7 @@ const ContactIntro = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <Button 
-            onClick={() => navigateTo('/')} 
+            onClick={() => navigateTo('/prendre-rdv')} 
             size="lg" 
             className="bg-[#EBC390] text-black hover:bg-[#EBC390]/90 font-bold text-lg"
           >

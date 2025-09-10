@@ -53,11 +53,11 @@ const Process = () => {
                 className={`flex items-center w-full ${index % 2 === 0 ? 'flex-row-reverse' : ''}`}
               >
                 <div className="w-1/2 p-4">
-                  <div className={`bg-white dark:bg-gray-900/50 rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-800 text-left ${index % 2 === 0 ? 'text-right' : ''}`}>
-                    <div className="text-6xl font-black text-blue-500 dark:text-accent-electric-blue mb-2">0{index + 1}</div>
-                    <h3 className="text-2xl font-bold text-gray-800 dark:text-white mb-3">{step.title}</h3>
-                    <p className="text-gray-600 dark:text-gray-300 mb-4">{step.description}</p>
-                    <div className="mt-4 text-green-500 dark:text-green-400 font-semibold flex items-center gap-2">
+                  <div className={`bg-white dark:bg-gray-900/50 rounded-xl shadow-lg p-6 border border-gray-100 dark:border-gray-800 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>
+                    <div className={`text-6xl font-black text-blue-500 dark:text-accent-electric-blue mb-2 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>0{index + 1}</div>
+                    <h3 className={`text-2xl font-bold text-gray-800 dark:text-white mb-3 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>{step.title}</h3>
+                    <p className={`text-gray-600 dark:text-gray-300 mb-4 ${index % 2 === 0 ? 'text-right' : 'text-left'}`}>{step.description}</p>
+                    <div className={`mt-4 text-green-500 dark:text-green-400 font-semibold flex items-center gap-2 ${index % 2 === 0 ? 'justify-end' : 'justify-start'}`}>
                        Bénéfice pour le client : {step.advantage} <CheckCircle2 className="w-6 h-6 text-green-500 dark:text-green-400 fill-green-100 dark:fill-green-900/50" />
                     </div>
                   </div>

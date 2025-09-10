@@ -21,9 +21,9 @@ const ContactCTA = ({ isInView }: ContactCTAProps) => {
           transition={{ duration: 0.8 }}
           className="text-center mb-12"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 text-white">
+          <h3 className="text-4xl md:text-5xl font-bold mb-6 text-white">
             Prêt à conquérir votre futur ?
-          </h2>
+          </h3>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
             Rejoignez les entrepreneurs visionnaires qui ont choisi KATECH pour transformer leurs rêves en réalité.
           </p>
@@ -36,7 +36,7 @@ const ContactCTA = ({ isInView }: ContactCTAProps) => {
             className="flex flex-col sm:flex-row gap-6 justify-center items-center"
           >
             <Button
-              onClick={() => navigateTo('/audit-gratuit')}
+              onClick={() => navigateTo('/prendre-rdv')}
               size="lg"
               className="bg-white text-blue-600 hover:bg-gray-200 text-lg px-8 py-4 rounded-[12px] group"
             >

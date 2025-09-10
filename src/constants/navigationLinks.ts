@@ -11,7 +11,7 @@ export const services = [
 
 export const company = [
     { name: 'À propos', path: '/about' },
-    { name: 'Notre équipe', path: '/about' },
+    { name: 'Notre équipe', path: '/about#equipe' },
     { name: 'Recrutement', path: '/recrutement' },
     { name: 'Contact', path: '/contact' }
   ];
