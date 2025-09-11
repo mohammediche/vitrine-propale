@@ -5,23 +5,33 @@ import { fetchArticleBySlug, fetchArticles } from '@/lib/strapi/articles';
 import AnimatedWrapper from '@/components/ui/AnimatedWrapper';
 import { formatDate } from '@/lib/utils';
 import NewsletterArticleContent from '@/components/newsletters/NewsletterArticleContent';
+import { Article } from '@/types/strapi';
 
 interface NewsletterArticlePageProps {
   params: Promise<{ articleId: string }>;
 }
 
+export async function generateStaticParams() {
+  const articles = await fetchArticles();
+
+  return articles.map((article: Article) => ({
+    articleId: article.slug,
+  }));
+}
+
+export const revalidate = 3600;
+
 const NewsletterArticlePage = async ({ params }: NewsletterArticlePageProps) => {
   const { articleId } = await params;
-  
+
   try {
-    const [article, allArticles] = await Promise.all([
-      fetchArticleBySlug(articleId),
-      fetchArticles()
-    ]);
-        
+    const article = await fetchArticleBySlug(articleId);
+
     if (!article) {
       notFound();
     }
+
+    const allArticles = await fetchArticles();
 
     return (
       <AnimatedWrapper>

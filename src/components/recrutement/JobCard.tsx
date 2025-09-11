@@ -20,7 +20,7 @@ const JobCard = ({ item, index }: JobCardProps) => {
       transition={{ delay: 0.1 * index }}
       className="flex"
     >
-      <Link href={`/recrutement/${item.slug}`} className="w-full" aria-label={`Postuler pour ${item.title}`}>
+      <Link href={`/recrutement/${item.slug}`} prefetch={true} className="w-full" aria-label={`Postuler pour ${item.title}`}>
         <div className="bg-gray-50 dark:bg-gray-900/50 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full group relative">
           <div className="p-8 flex-grow">
             <div className="flex justify-between items-center mb-4">

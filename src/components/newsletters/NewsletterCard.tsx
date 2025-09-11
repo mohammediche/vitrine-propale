@@ -21,7 +21,7 @@ const NewsletterCard = ({ item, index }: NewsletterCardProps) => {
       transition={{ delay: 0.1 * index }}
       className="flex"
     >
-      <Link href={`/newsletters/${item.slug}`} className="w-full">
+      <Link href={`/newsletters/${item.slug}`} className="w-full" prefetch={true}>
         <div className="bg-gray-50 dark:bg-gray-900/50 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden flex flex-col h-full group relative">
           {item.isPaid && (
             <div className="absolute top-4 right-4 bg-yellow-400 text-yellow-900 px-3 py-1 rounded-full text-xs font-bold flex items-center gap-1">

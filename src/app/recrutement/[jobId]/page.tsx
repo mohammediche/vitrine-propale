@@ -2,14 +2,25 @@ import React from 'react';
 import Link from 'next/link';
 import { Briefcase, MapPin, ArrowLeft } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { fetchJobBySlug } from '@/lib/strapi/jobs';
+import { fetchJobBySlug, fetchJobs } from '@/lib/strapi/jobs';
 import { notFound } from 'next/navigation';
 import AnimatedWrapper from '@/components/ui/AnimatedWrapper';
 import JobPageContent from '@/components/recrutement/JobPageContent';
+import { Job } from '@/types/strapi';
 
 interface JobPageProps {
   params: Promise<{ jobId: string }>;
 }
+
+export async function generateStaticParams() {
+  const jobs = await fetchJobs();
+
+  return jobs.map((job: Job) => ({
+    jobId: job.slug,
+  }));
+}
+
+export const revalidate = 3600;
 
 const JobPage = async ({ params }: JobPageProps) => {
   const { jobId } = await params;
