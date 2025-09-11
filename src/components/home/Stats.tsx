@@ -42,8 +42,8 @@ const Stats = () => {
               transition={{ duration: 0.5, delay: index * 0.15 }}
               className="bg-white dark:bg-gray-900/50 p-8 rounded-xl shadow-md text-center"
             >
-              <stat.icon className="w-12 h-12 text-blue-500 dark:text-accent-electric-blue mx-auto mb-4" />
-              <AnimatedNumber value={stat.value} suffix={stat.suffix} className='text-5xl font-bold text-blue-600 dark:text-accent-electric-blue mb-2'/>
+              <stat.icon className="w-12 h-12 primary-blue mx-auto mb-4" />
+              <AnimatedNumber value={stat.value} suffix={stat.suffix} className='text-5xl font-bold primary-blue mb-2'/>
               <h3 className="text-xl font-bold text-gray-800 dark:text-white">{stat.title}</h3>
               <p className="text-gray-500 dark:text-gray-400 mt-1">{stat.text}</p>
             </motion.div>

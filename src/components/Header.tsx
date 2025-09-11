@@ -52,7 +52,7 @@ const Header = () => {
               whileHover={{ scale: 1.05 }}
             >
               <Image
-                src={theme === 'dark' ? "/logo-katech-b.svg" : "/logo-katech.svg"}
+                src={theme === 'dark' ? "/logo-katech-light.png" : "/logo-katech-dark.svg"}
                 alt="KATECH Logo"
                 width={120}
                 height={32}
