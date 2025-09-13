@@ -1,16 +1,25 @@
 "use client";
-import React from 'react';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
-import { Unlock, Sparkles } from 'lucide-react';
+import { Input } from '@/components/ui/input';
+import { Unlock, Sparkles, Mail } from 'lucide-react';
 import Dialog from '@/components/ui/Dialog';
 
 interface PaywallDialogProps {
   isOpen: boolean;
   onClose: () => void;
-  onConfirm: () => void;
+  onConfirm: (email: string) => void;
 }
 
 const PaywallDialog: React.FC<PaywallDialogProps> = ({ isOpen, onClose, onConfirm }) => {
+  const [email, setEmail] = useState('');
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!email) return;
+    onConfirm(email);
+  };
+
   return (
     <Dialog isOpen={isOpen} onClose={onClose}>
       <div className="p-8 text-center">
@@ -26,14 +35,30 @@ const PaywallDialog: React.FC<PaywallDialogProps> = ({ isOpen, onClose, onConfir
           <p className="text-4xl font-bold text-gray-900 dark:text-white">0,99€</p>
           <p className="text-sm text-gray-500 dark:text-gray-400">Paiement unique, accès à vie.</p>
         </div>
-        
-        <Button 
-          onClick={onConfirm} 
-          className="w-full bg-[#EBC390] text-black hover:bg-[#EBC390]/90 font-bold" 
-          size="lg"
-        >
-          <Unlock className="mr-2 h-5 w-5" /> Débloquer l&apos;article
-        </Button>
+
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div className="relative">
+            <Mail className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-gray-400" />
+            <Input
+              type="email"
+              placeholder="Votre adresse email"
+              value={email}
+              onChange={(e) => { setEmail(e.target.value) }}
+              className="pl-10"
+              required
+            />
+          </div>
+          
+          
+          <Button 
+            type="submit"
+            disabled={!email}
+            className="w-full bg-[#EBC390] text-black hover:bg-[#EBC390]/90 font-bold disabled:opacity-50 disabled:cursor-not-allowed" 
+            size="lg"
+          >
+            <Unlock className="mr-2 h-5 w-5" /> Débloquer l&apos;article
+          </Button>
+        </form>
       </div>
     </Dialog>
   );

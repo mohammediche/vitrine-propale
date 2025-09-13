@@ -5,14 +5,14 @@ import { ArrowRight } from 'lucide-react';
 import { Article } from '@/types/strapi';
 
 interface OtherArticlesProps {
-  currentArticleId: string;
+  currentArticleSlug: string;
   allArticles: Article[];
 }
 
-const OtherArticles: React.FC<OtherArticlesProps> = ({ currentArticleId, allArticles }) => {
+const OtherArticles: React.FC<OtherArticlesProps> = ({ currentArticleSlug, allArticles }) => {
   // Filtrer les autres articles (max 5)
   const otherArticles = allArticles
-    .filter(article => article.slug !== currentArticleId)
+    .filter(article => article.slug !== currentArticleSlug)
     .slice(0, 5);
 
   if (otherArticles.length === 0) {

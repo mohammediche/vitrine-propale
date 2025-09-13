@@ -8,38 +8,40 @@ import PremiumContentBanner from '@/components/banner/PremiumContentBanner';
 import OtherArticles from '@/components/newsletters/OtherArticles';
 import { Article } from '@/types/strapi';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
+import { checkAccess, createCheckoutSession } from '@/services/front/stripe';
 
 interface NewsletterArticleContentProps {
   article: Article;
-  articleId: string;
   allArticles: Article[];
 }
 
-const NewsletterArticleContent = ({ article, articleId, allArticles }: NewsletterArticleContentProps) => {
+const NewsletterArticleContent = ({ article, allArticles }: NewsletterArticleContentProps) => {
   const { navigateTo } = useNavigate();
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
-
-
 
   useEffect(() => {
     if (!article) {
       navigateTo('/newsletters');
       return;
     }
+  }, [article, navigateTo]);
 
-    // Vérifier le statut de déverrouillage
-    const unlockedStatus = localStorage.getItem(`unlocked_${articleId}`);
-    if (unlockedStatus === 'true') {
+  const confirmPayment = async (email: string) => {
+    // 1. Vérifier si l’article a déjà été payé
+    const hasAccess = await checkAccess({ email, articleId: article.id.toString() });
+  
+    if (hasAccess) {
+      setShowPaywall(false);
       setIsUnlocked(true);
+      return;
     }
-  }, [articleId, article, navigateTo]);
-
-  const confirmPayment = () => {
-    setShowPaywall(false);
-    setIsUnlocked(true);
-    localStorage.setItem(`unlocked_${articleId}`, 'true');
-    console.log('Paiement réussi ! Article débloqué.');
+    // 2. Sinon → créer une session Stripe
+    const sessionUrl = await createCheckoutSession({ email, articleId: article.id.toString(), slug: article.slug });
+  
+    if (sessionUrl) {
+      window.location.href = sessionUrl;
+    }
   };
 
   return (
@@ -56,7 +58,7 @@ const NewsletterArticleContent = ({ article, articleId, allArticles }: Newslette
               >
                 <BlocksRenderer content={article.content} />
               </motion.div>
-              {article.isPaid && (
+              {article.isPremium && (
                 !isUnlocked ? (
                   <PremiumContentBanner onUnlockClick={() => setShowPaywall(true)} />
                 ) : (
@@ -74,7 +76,7 @@ const NewsletterArticleContent = ({ article, articleId, allArticles }: Newslette
               className="w-full lg:w-1/3 lg:sticky top-28 h-fit"
             >
               <NewsletterSubscription />
-              <OtherArticles currentArticleId={articleId} allArticles={allArticles} />
+              <OtherArticles currentArticleSlug={article.slug} allArticles={allArticles} />
             </motion.aside>
           </div>
         </div>

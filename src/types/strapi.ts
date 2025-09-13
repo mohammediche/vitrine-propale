@@ -21,11 +21,8 @@ type Author = {
     author?: Author
     category?: Category
     isPremium: boolean
-    isPaid: boolean
     excerpt: string
     bgColor: string
-
-
   }
   export type Job = {
     id: number

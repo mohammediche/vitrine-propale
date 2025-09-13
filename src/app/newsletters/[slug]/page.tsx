@@ -8,24 +8,24 @@ import NewsletterArticleContent from '@/components/newsletters/NewsletterArticle
 import { Article } from '@/types/strapi';
 
 interface NewsletterArticlePageProps {
-  params: Promise<{ articleId: string }>;
+  params: Promise<{ slug: string }>;
 }
 
 export async function generateStaticParams() {
   const articles = await fetchArticles();
 
   return articles.map((article: Article) => ({
-    articleId: article.slug,
+    slug: article.slug,
   }));
 }
 
 export const revalidate = 3600;
 
 const NewsletterArticlePage = async ({ params }: NewsletterArticlePageProps) => {
-  const { articleId } = await params;
+  const { slug } = await params;
 
   try {
-    const article = await fetchArticleBySlug(articleId);
+    const article = await fetchArticleBySlug(slug);
 
     if (!article) {
       notFound();
@@ -56,7 +56,6 @@ const NewsletterArticlePage = async ({ params }: NewsletterArticlePageProps) => 
 
         <NewsletterArticleContent 
           article={article} 
-          articleId={articleId} 
           allArticles={allArticles}
         />
       </AnimatedWrapper>
