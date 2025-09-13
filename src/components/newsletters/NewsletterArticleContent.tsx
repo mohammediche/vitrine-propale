@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { motion } from 'framer-motion';
 import { useNavigate } from '@/hooks/useNavigate';
 import PaywallDialog from '@/components/newsletters/PaywallDialog';
@@ -9,6 +9,7 @@ import OtherArticles from '@/components/newsletters/OtherArticles';
 import { Article } from '@/types/strapi';
 import { BlocksRenderer } from '@strapi/blocks-react-renderer';
 import { checkAccess, createCheckoutSession } from '@/services/front/stripe';
+import { getUserEmail, setUserEmail } from '@/lib/cookies';
 
 interface NewsletterArticleContentProps {
   article: Article;
@@ -19,16 +20,51 @@ const NewsletterArticleContent = ({ article, allArticles }: NewsletterArticleCon
   const { navigateTo } = useNavigate();
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [showPaywall, setShowPaywall] = useState(false);
+  const [hasCheckedAutoAccess, setHasCheckedAutoAccess] = useState(false);
+
+  const checkAutoAccess = useCallback(async () => {
+    // Éviter les exécutions multiples
+    if (hasCheckedAutoAccess) {
+      return;
+    }
+    
+    setHasCheckedAutoAccess(true);
+    
+    try {
+      const savedEmail = getUserEmail();
+      
+      if (savedEmail) {
+        const hasAccess = await checkAccess({ 
+          email: savedEmail, 
+          articleId: article.id.toString() 
+        });
+        
+        if (hasAccess) {
+          setIsUnlocked(true);
+        }
+      }
+    } catch (error) {
+      console.error('Erreur lors de la vérification automatique:', error);
+    }
+  }, [article.id, hasCheckedAutoAccess]);
 
   useEffect(() => {
     if (!article) {
       navigateTo('/newsletters');
       return;
     }
-  }, [article, navigateTo]);
+
+    // Vérifier automatiquement l'accès si c'est un article premium
+    if (article.isPremium) {
+      checkAutoAccess();
+    }
+  }, [article, navigateTo, checkAutoAccess]);
 
   const confirmPayment = async (email: string) => {
-    // 1. Vérifier si l’article a déjà été payé
+    // 1. Stocker l'email dans les cookies
+    setUserEmail(email);
+    
+    // 2. Vérifier si l'article a déjà été payé
     const hasAccess = await checkAccess({ email, articleId: article.id.toString() });
   
     if (hasAccess) {
@@ -36,7 +72,7 @@ const NewsletterArticleContent = ({ article, allArticles }: NewsletterArticleCon
       setIsUnlocked(true);
       return;
     }
-    // 2. Sinon → créer une session Stripe
+    // 3. Sinon → créer une session Stripe
     const sessionUrl = await createCheckoutSession({ email, articleId: article.id.toString(), slug: article.slug });
   
     if (sessionUrl) {
