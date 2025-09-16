@@ -69,21 +69,6 @@ export const sectionVariants = {
   visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: "easeOut" as const } }
 };
 
-// Données pour AnatomyOfARobot
-export const funnelStages = [
-  { text: "Capture des données brutes", width: 100, fontSize: "5" },
-  { text: "Nettoyage & traitement", width: 85, fontSize: "4.5" },
-  { text: "Analyse algorithmique", width: 70, fontSize: "4.5" },
-  { text: "Décision automatisée", width: 55, fontSize: "4" },
-];
-
-export const connectedModules = [
-  { icon: Cloud, label: "Entrée des données" },
-  { icon: Search, label: "Analyse contexte" },
-  { icon: CheckSquare, label: "Validation" },
-  { icon: Settings, label: "Action recommandée" },
-];
-
 export const weightingMatrixHeaders = ["Critère", "Poids", "Score Actuel", "Impact Projeté", "Priorité"];
 
 export const weightingMatrixRows = [

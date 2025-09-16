@@ -1,9 +1,8 @@
 "use client";
 import React from 'react';
+import Image from 'next/image';
 import { motion, useInView } from 'framer-motion';
 import { 
-  funnelStages, 
-  connectedModules, 
   weightingMatrixHeaders, 
   weightingMatrixRows 
 } from '@/constants/robot';
@@ -36,139 +35,6 @@ const itemVariants = {
       duration: 0.6
     }
   }
-};
-
-const PremiumFunnel = () => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
-
-  const funnelPath = (width: number, y: number, isTop: boolean, isBottom: boolean) => {
-    const halfWidth = width / 2;
-    let path = `M ${50 - halfWidth},${y} `;
-    if (!isTop) {
-      path += `L ${50 - halfWidth - 5},${y - 10} `;
-    }
-    path += `H ${50 + halfWidth + (isTop ? 0 : 5)} `;
-    if (!isTop) {
-      path += `L ${50 + halfWidth},${y} `;
-    }
-    
-    const nextWidth = isBottom ? width : funnelStages[funnelStages.findIndex(s => s.width === width) + 1]?.width || width;
-    const nextHalfWidth = nextWidth / 2;
-
-    path += `L ${50 + nextHalfWidth},${y + 40} `;
-    path += `H ${50 - nextHalfWidth} Z`;
-    return path;
-  };
-
-
-  return (
-    <div ref={ref} className="w-full flex justify-center items-center">
-      <svg viewBox="0 0 100 200" className="w-full max-w-sm h-auto">
-        <defs>
-          <linearGradient id="funnelGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%" style={{ stopColor: "rgba(179, 229, 252, 0.7)", stopOpacity: 1 }} />
-            <stop offset="50%" style={{ stopColor: "rgba(179, 229, 252, 1)", stopOpacity: 1 }} />
-            <stop offset="100%" style={{ stopColor: "rgba(179, 229, 252, 0.7)", stopOpacity: 1 }} />
-          </linearGradient>
-          <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-            <feGaussianBlur stdDeviation="2" result="coloredBlur" />
-            <feMerge>
-              <feMergeNode in="coloredBlur" />
-              <feMergeNode in="SourceGraphic" />
-            </feMerge>
-          </filter>
-        </defs>
-
-        {funnelStages.map((stage, i) => (
-          <motion.g
-            key={i}
-            initial={{ opacity: 0, y: -20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.5, delay: i * 0.3 }}
-          >
-            <path
-              d={funnelPath(stage.width, i * 45, i === 0, i === funnelStages.length - 1)}
-              fill="url(#funnelGradient)"
-              stroke="var(--accent-gold)"
-              strokeWidth="0.5"
-            />
-            <text
-              x="50"
-              y={i * 45 + 22}
-              textAnchor="middle"
-              fill="var(--dark-blue)"
-              fontSize={stage.fontSize}
-              fontWeight="bold"
-            >
-              {stage.text}
-            </text>
-          </motion.g>
-        ))}
-        
-      </svg>
-    </div>
-  );
-};
-
-const ConnectedModules = () => {
-  const ref = React.useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once: true, amount: 0.5 });
-
-  const cardVariants = {
-    hidden: { opacity: 0, x: 50, scale: 0.9 },
-    visible: (i: number) => ({
-      opacity: 1,
-      x: 0,
-      scale: 1,
-      transition: {
-        delay: i * 0.2,
-        duration: 0.6,
-        ease: "easeOut" as const,
-      },
-    }),
-  };
-
-  const lineVariants = {
-    hidden: { height: 0 },
-    visible: (i: number) => ({
-      height: "3rem",
-      transition: {
-        delay: i * 0.2 + 0.4,
-        duration: 0.8,
-        ease: "easeInOut" as const,
-      },
-    }),
-  };
-
-  return (
-    <div ref={ref} className="w-full flex flex-col items-center">
-      {connectedModules.map((module, i) => (
-        <React.Fragment key={i}>
-          <motion.div
-            custom={i}
-            variants={cardVariants}
-            initial="hidden"
-            animate={isInView ? "visible" : "hidden"}
-            className="flex items-center p-4 w-full max-w-sm h-24 bg-[var(--accent-light-blue)] text-[var(--dark-blue)] rounded-2xl border border-[var(--accent-gold)] shadow-lg"
-          >
-            <module.icon className="w-8 h-8 mr-4 flex-shrink-0" />
-            <p className="font-semibold text-lg">{module.label}</p>
-          </motion.div>
-          {i < connectedModules.length - 1 && (
-            <motion.div
-              custom={i}
-              variants={lineVariants}
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              className="relative w-0.5 bg-[var(--accent-light-blue)]/70 my-1"
-              style={{ boxShadow: '0 0 5px var(--accent-light-blue)' }}
-            />
-          )}
-        </React.Fragment>
-      ))}
-    </div>
-  );
 };
 
 const AnimatedConnector = () => {
@@ -287,7 +153,15 @@ const AnatomyOfARobot = () => {
         <div className="grid md:grid-cols-[1fr_auto_1fr] gap-x-4 gap-y-16 items-center">
           <motion.div variants={sectionVariants} className="space-y-8">
             <h3 className="text-2xl font-bold text-[var(--accent-gold)] text-center">Entonnoir de traitement</h3>
-            <PremiumFunnel />
+            <div className="flex justify-center">
+              <Image 
+                src="/illustration1.svg" 
+                alt="Entonnoir de traitement" 
+                width={500} 
+                height={400}
+                className="max-w-full h-auto scale-110"
+              />
+            </div>
           </motion.div>
 
           <div className="relative w-full md:w-24 h-full">
@@ -296,7 +170,15 @@ const AnatomyOfARobot = () => {
 
           <motion.div variants={sectionVariants} className="space-y-8">
             <h3 className="text-2xl font-bold text-[var(--accent-gold)] text-center">Modules Connectés</h3>
-            <ConnectedModules />
+            <div className="flex justify-center">
+              <Image 
+                src="/Illustration2.svg" 
+                alt="Modules Connectés" 
+                width={500} 
+                height={400}
+                className="max-w-full h-auto scale-110"
+              />
+            </div>
           </motion.div>
         </div>
 
