@@ -42,7 +42,7 @@ const Footer = () => {
                   transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
                 >
                   <Image
-                    src="/logo.svg"
+                    src="/logo-katech-light.png"
                     alt="KATECH Logo"
                     width={120}
                     height={32}
@@ -51,8 +51,7 @@ const Footer = () => {
                 </motion.div>
               </Link>
               <p className="text-gray-400 mt-4 leading-relaxed">
-                Business Angel d&apos;élite spécialisé dans l&apos;accompagnement stratégique et l&apos;investissement. 
-                Nous transformons les visions entrepreneuriales en succès durables.
+                 Partenaire stratégique en transformation digitale, combinant vision et exécution. Nous transformons les processus en solutions digitales intelligentes.
               </p>
               
               <div className="mt-6 space-y-3">

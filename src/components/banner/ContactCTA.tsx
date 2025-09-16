@@ -22,10 +22,10 @@ const ContactCTA = ({ isInView }: ContactCTAProps) => {
           className="text-center mb-12"
         >
           <h3 className="text-4xl md:text-5xl font-bold mb-6 text-white">
-            Prêt à conquérir votre futur ?
+            Faites partie des entreprises innovantes 
           </h3>
           <p className="text-xl text-gray-200 max-w-3xl mx-auto">
-            Rejoignez les entrepreneurs visionnaires qui ont choisi KATECH pour transformer leurs rêves en réalité.
+            Prêt à écrire le prochain chapitre de votre succès ?  Discutons de votre projet.
           </p>
         </motion.div>
 

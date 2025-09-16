@@ -44,7 +44,7 @@ const PaywallDialog: React.FC<PaywallDialogProps> = ({ isOpen, onClose, onConfir
               placeholder="Votre adresse email"
               value={email}
               onChange={(e) => { setEmail(e.target.value) }}
-              className="pl-10"
+              className="pl-10 dark:bg-gray-800 dark:border-gray-700 dark:text-white"
               required
             />
           </div>

@@ -20,7 +20,7 @@ const Hero = () => {
         <div className="absolute bottom-20 left-1/2 w-72 h-72 bg-blue-300 rounded-full mix-blend-multiply filter blur-xl animate-pulse delay-2000"></div>
       </div>
 
-      <div className="container mx-auto px-6 text-center relative z-10">
+      <div className="container mx-auto px-6 pb-6 text-center relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
@@ -34,19 +34,19 @@ const Hero = () => {
             className="inline-flex items-center gap-2 bg-white/20 dark:bg-black/20 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/30 dark:border-white/20"
           >
             <Sparkles className="w-5 h-5 text-yellow-400" />
-            <span className="text-sm font-medium text-gray-800 dark:text-white">Business Angel d&apos;élite</span>
+            <span className="text-sm font-medium text-gray-800 dark:text-white">Conseil Transformation Digitale</span>
           </motion.div>
 
           <motion.h1
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3, duration: 0.8 }}
-            className="text-5xl md:text-7xl font-bold mb-6 leading-tight heading-gradient"
+            className="text-5xl md:text-7xl font-bold pb-3 mb-6 leading-tight heading-gradient"
           >
             Transformez votre{' '}
             <span className="text-gradient">vision</span>
             <br />
-            en succès
+            en logiciel
           </motion.h1>
 
           <motion.p
@@ -55,7 +55,7 @@ const Hero = () => {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            KATECH accompagne les entrepreneurs visionnaires avec expertise, financement stratégique et un réseau d&apos;exception pour accélérer leur croissance.
+            KATECH aide votre DSI à apporter de la performance à vos fonctions supports grâce à des logiciels sur-mesure, conçus pour répondre à vos besoins métiers et atteindre vos objectifs opérationnels.
           </motion.p>
 
           <motion.div

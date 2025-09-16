@@ -68,7 +68,7 @@ const NewsletterSubscription = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
           required
-          className="w-full"
+          className="w-full dark:bg-gray-800 dark:border-gray-700 dark:text-white"
         />
         
         {message && (

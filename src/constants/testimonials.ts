@@ -1,34 +1,26 @@
 export const testimonials = [
     {
-      name: "Marie Dubois",
-      position: "CEO, TechStart",
-      company: "Startup Fintech",
+      name: "Mariama FOFANA",
+      position: "CEO FormalJuridique",
+      company: "Juriste",
       rating: 5,
-      text: "KATECH a transformé notre vision en réalité. Grâce à leur accompagnement, nous avons levé 2M€ et multiplié notre chiffre d'affaires par 5 en 18 mois.",
-      image: "/member1.webp"
+      text: " KATECH a su adapter Propale à nos besoins métiers avec un pilotage exemplaire. Résultat : un gain de productivité majeur et une expérience client largement améliorée.",
+      // image: "/member1.webp"
     },
     {
-      name: "Pierre Martin",
-      position: "Fondateur, EcoSolutions",
-      company: "Cleantech",
+      name: "Max MORTIER",
+      position: "FFBA",
+      company: "Trésorier",
       rating: 5,
-      text: "L'expertise de KATECH en développement durable nous a permis de devenir leader sur notre marché. Leur réseau d'investisseurs est exceptionnel.",
-      image: "/member2.webp"
+      text: "KATECH a développé pour nous un outil de génération automatisée des CERFA. Cette solution a amélioré l’expérience utilisateur tout en renforçant la conformité.",
+      // image: "/member2.webp"
     },
     {
-      name: "Sophie Chen",
-      position: "Directrice Innovation, MedTech Pro",
-      company: "Medtech",
+      name: "Virginie THIBURCE",
+      position: "FACILITY RH",
+      company: "Recrutement",
       rating: 5,
-      text: "Accompagnement stratégique remarquable. KATECH nous a aidés à naviguer les réglementations complexes et à accélérer notre time-to-market.",
-      image: "/member3.webp"
-    },
-    {
-      name: "Thomas Leroy",
-      position: "Co-fondateur, DataFlow",
-      company: "SaaS B2B",
-      rating: 5,
-      text: "Grâce à KATECH, nous avons structuré notre croissance internationale. Leur approche méthodique et leurs conseils ont été déterminants.",
-      image: "/member4.webp"
+      text: "Avec l’expertise de KATECH, nous recrutons plus vite, mieux et à moindre coût : l’IA nous aide à capter les bons profils et à réduire durablement le turnover.",
+      // image: "/member3.webp"
     }
   ];

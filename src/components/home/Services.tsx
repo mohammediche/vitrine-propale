@@ -39,7 +39,7 @@ export const services = [{
     id: 'marketing-communication',
     icon: Megaphone,
     title: "Marketing & Communication",
-    description: "Stratégies pour accroître votre visibilité.",
+    description: "Stratégie et support de communication.",
     color: "from-pink-400 to-rose-500"
   }];
 

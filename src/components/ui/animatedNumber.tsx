@@ -32,7 +32,8 @@ const AnimatedNumber = ({
       const animationControls = animate(0, value, {
         duration,
         onUpdate(latest) {
-          node.textContent = `${Math.round(latest)}${suffix}`;
+          const roundedValue = Math.round(latest);
+          node.textContent = `${roundedValue}${suffix}`;
         }
       });
 

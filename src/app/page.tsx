@@ -51,7 +51,7 @@ const IntroPage = () => {
                     className="inline-flex items-center gap-2 bg-black/20 backdrop-blur-sm rounded-full px-6 py-3 mb-8 border border-white/30"
                   >
                     <Sparkles className="w-5 h-5 text-yellow-400" />
-                    <span className="text-sm font-medium">Business Angel d&apos;élite</span>
+                    <span className="text-sm font-medium">Conseil Transformation Digitale</span>
                 </motion.div>
 
                  <motion.div
@@ -71,18 +71,19 @@ const IntroPage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.4 }}
-                    className="text-4xl md:text-6xl font-bold mb-4"
+                    className="text-4xl md:text-5xl font-bold mb-4"
                 >
-                    Prêt pour le décollage ?
+                    Prêt à révéler le potentiel de votre entreprise ?
                 </motion.h1>
 
                 <motion.p
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 1, delay: 0.6 }}
-                    className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto mb-10"
+                    className="text-lg text-gray-300 max-w-2xl mx-auto mb-10"
                 >
-                    Votre voyage vers le succès commence maintenant. KATECH vous propulse vers de nouveaux sommets.
+                    KATECH déverrouille vos leviers stratégiques et vous conduit vers un futur plus performant.
+                    Nous transformons vos processus en innovation numérique pour propulser votre performance.
                 </motion.p>
                 
                 <motion.div
@@ -95,7 +96,7 @@ const IntroPage = () => {
                         size="lg"
                         className="bg-blue-500 text-white font-bold text-lg px-10 py-6 rounded-full group hover:bg-blue-600 shadow-lg shadow-blue-500/20"
                     >
-                        Lancer la mission <Sparkles className="ml-2 w-5 h-5 group-hover:animate-ping" />
+                        Activez votre futur <Sparkles className="ml-2 w-5 h-5 group-hover:animate-ping" />
                     </Button>
                 </motion.div>
             </div>

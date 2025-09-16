@@ -12,7 +12,7 @@ const RecruitmentIntro = () => {
           transition={{ duration: 0.6 }}
           className="text-3xl md:text-5xl font-bold max-w-4xl mx-auto heading-gradient"
         >
-          Chez KATECH, nous ne nous contentons pas de viser les étoiles, nous construisons les fusées.
+          Chez KATECH, nous ne nous contentons pas d&apos;imaginer l&apos;avenir, nous le créons.
         </motion.h1>
         <motion.p
           initial={{ opacity: 0, y: 20 }}

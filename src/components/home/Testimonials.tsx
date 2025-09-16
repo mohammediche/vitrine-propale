@@ -74,13 +74,13 @@ const Testimonials = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="flex items-center justify-center gap-4"
               >
-                 <Image
+                 {/* <Image
                     src={testimonials[currentIndex].image}
                     alt={`Photo de ${testimonials[currentIndex].name}`}
                     width={120}
                     height={32}
                     className="w-16 h-16 rounded-full object-cover border-4 border-blue-100 dark:border-blue-900/50"
-                />
+                /> */}
                 
                 <div className="text-center">
                   <div className="font-bold text-gray-900 dark:text-white text-lg">

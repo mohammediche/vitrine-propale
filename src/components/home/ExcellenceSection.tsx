@@ -7,21 +7,21 @@ export const excellenceItems = [
     {
       icon: Target,
       title: "Notre Mission",
-      description: "Accompagner les entrepreneurs visionnaires dans leur transformation digitale et leur croissance stratégique.",
+      description: "Développer des outils structurants qui stimule la création de la valeur en combinant avec cohérence l’expertise humaine et la technologie.",
       color: "text-blue-600 dark:text-blue-400",
       bgColor: "bg-blue-100 dark:bg-blue-900/50"
     },
     {
       icon: Eye,
       title: "Notre Vision",
-      description: "Créer un écosystème d'innovation où chaque entrepreneur peut réaliser son plein potentiel.",
+      description: "Concevoir et déployer des solutions informatiques qui résolvent les frictions de vos processus et renforcent la performance de votre organisation.",
       color: "text-yellow-600 dark:text-yellow-400",
       bgColor: "bg-yellow-100 dark:bg-yellow-900/50"
     },
     {
       icon: Heart,
       title: "Nos Valeurs",
-      description: "Excellence, intégrité et innovation guident chacune de nos actions et décisions stratégiques.",
+      description: "Délivrer des logiciels qui s’intègrent parfaitement à votre SI pour simplifier vos opérations quotidiennes et offrir un ROI mesurable.",
       color: "text-green-600 dark:text-green-400",
       bgColor: "bg-green-100 dark:bg-green-900/50"
     }
@@ -41,12 +41,9 @@ const ExcellenceSection = () => {
           transition={{ duration: 0.8 }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-bold mb-6 heading-gradient">
-            L&apos;excellence au service de votre vision
+          <h2 className="text-4xl md:text-5xl font-bold pb-2 mb-6 heading-gradient">
+            L&apos;innovation au service de vos processus 
           </h2>
-          <p className="text-xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto">
-            Des résultats concrets qui témoignent de notre expertise et de notre engagement.
-          </p>
         </motion.div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

@@ -20,7 +20,8 @@ const AboutIntro = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="text-lg text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
         >
-          Depuis 2009, KATECH se consacre à transformer les idées audacieuses en entreprises leaders sur leur marché. Nous sommes plus que des investisseurs ; nous sommes des partenaires de croissance, engagés à vos côtés à chaque étape de votre développement.
+          Depuis 2021, Katech conçoit des solutions numériques qui transforment les besoins métier en services informatiques de pointe. 
+          Notre expertise unique allie stratégie et action pour un impact positif et durable sur votre activité.
         </motion.p>
       </div>
     </section>

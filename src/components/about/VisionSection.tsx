@@ -14,9 +14,9 @@ const VisionSection = () => {
             viewport={{ once: true }}
             transition={{ duration: 0.7 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-gradient">Une Vision Révolutionnaire</h2>
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 heading-gradient">Une approche révolutionnaire</h2>
             <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-              Née en 2009 de la conviction que le capital seul ne suffit pas, KATECH a été fondée par des entrepreneurs pour des entrepreneurs. Forts de notre propre expérience du terrain, nous avons créé un modèle d&apos;accompagnement unique qui allie financement stratégique, expertise opérationnelle et un réseau international puissant pour propulser les startups vers le succès.
+              Nous accompagnons les organisations dans l’ensemble de leur transformation digitale : conseil et audit, gestion de projets informatiques, communication et marketing, formation et recrutement. Nos experts pluridisciplinaires vous délivrent des solutions agiles et parfaitement adaptées à vos besoins métier. Notre force ? une méthodologie innovante pour concrétiser vos ambitions digitales !
             </p>
           </motion.div>
           <motion.div
