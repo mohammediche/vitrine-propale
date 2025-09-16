@@ -3,7 +3,6 @@ import React, { useRef, useState } from 'react';
 import { motion, useInView } from 'framer-motion';
 import { Star, ChevronLeft, ChevronRight, Quote } from 'lucide-react';
 import { testimonials } from '@/constants/testimonials';
-import Image from 'next/image';
 
 const Testimonials = () => {
   const ref = useRef<HTMLElement>(null);
@@ -74,13 +73,6 @@ const Testimonials = () => {
                 transition={{ duration: 0.5, delay: 0.2 }}
                 className="flex items-center justify-center gap-4"
               >
-                 {/* <Image
-                    src={testimonials[currentIndex].image}
-                    alt={`Photo de ${testimonials[currentIndex].name}`}
-                    width={120}
-                    height={32}
-                    className="w-16 h-16 rounded-full object-cover border-4 border-blue-100 dark:border-blue-900/50"
-                /> */}
                 
                 <div className="text-center">
                   <div className="font-bold text-gray-900 dark:text-white text-lg">

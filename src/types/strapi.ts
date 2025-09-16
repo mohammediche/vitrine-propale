@@ -22,7 +22,6 @@ type Author = {
     category?: Category
     isPremium: boolean
     excerpt: string
-    bgColor: string
   }
   export type Job = {
     id: number
@@ -34,5 +33,17 @@ type Author = {
     slug: string
     category: string
     location: string
+  }
+  
+  export type CaseStudy = {
+    id: number
+    title: string
+    slug: string
+    description: string
+    content: []
+    serviceSlug: string
+    createdAt: string
+    updatedAt: string
+    publishedAt: string
   }
   

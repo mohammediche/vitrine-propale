@@ -1,4 +1,4 @@
-import { Bot, BrainCircuit, Check, Cpu, ShieldCheck, Sparkles, Target, Search, CheckSquare, Settings, Cloud } from 'lucide-react';
+import { Bot, BrainCircuit, Check, Cpu, ShieldCheck, Sparkles, Target } from 'lucide-react';
 
 // Services IA
 export const servicesIA = [

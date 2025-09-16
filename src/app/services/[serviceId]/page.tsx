@@ -1,5 +1,5 @@
 "use client";
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { notFound } from 'next/navigation';
 import { servicesData } from '@/data/servicesData';
 import { motion } from 'framer-motion';
@@ -7,10 +7,11 @@ import { CheckCircle, Star, ArrowRight } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import Link from 'next/link';
 import ContactCTA from '@/components/banner/ContactCTA';
+import { fetchCaseStudiesByService } from '@/lib/strapi/case-studies';
+import { CaseStudy } from '@/types/strapi';
 
 interface ServicePageProps {
   params: Promise<{serviceId: string}>;
-  
 }
 
 const ServicePage = ({ params }: ServicePageProps) => {
@@ -23,7 +24,25 @@ const ServicePage = ({ params }: ServicePageProps) => {
     notFound();
   }
 
-  const { icon: Icon, name, tagline, whyUs, testimonial, cases } = service;
+  const { icon: Icon, name, tagline, whyUs, testimonial } = service;
+
+  // État pour les cas concrets
+  const [caseStudies, setCaseStudies] = useState<CaseStudy[]>([]);
+
+  // Récupérer les cas concrets depuis Strapi
+  useEffect(() => {
+    const fetchCaseStudies = async () => {
+      try {
+        const data = await fetchCaseStudiesByService(serviceId);
+        setCaseStudies(data);
+      } catch (error) {
+        console.error('Erreur lors du chargement des cas concrets:', error);
+        setCaseStudies([]);
+      }
+    };
+
+    fetchCaseStudies();
+  }, [serviceId]);
 
   return (
     <motion.div
@@ -127,7 +146,7 @@ const ServicePage = ({ params }: ServicePageProps) => {
                 <p className="text-lg text-gray-600 dark:text-gray-300 mt-4">Découvrez quelques-uns de nos projets emblématiques.</p>
             </motion.div>
             <div className="grid md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-                {cases.slice(0, 2).map((c, index) => (
+                {caseStudies.slice(0, 2).map((c, index) => (
                     <motion.div 
                         key={index}
                         initial={{ opacity: 0, y: 30 }}
