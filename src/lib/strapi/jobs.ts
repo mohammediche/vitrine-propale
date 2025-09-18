@@ -1,7 +1,7 @@
 export async function fetchJobs() {
     const url = new URL('/api/jobs', process.env.NEXT_PUBLIC_STRAPI_URL);
   
-    const res = await fetch(url.toString());
+    const res = await fetch(url.toString(), { cache: "no-store" });
     if (!res.ok) {
       throw new Error('Strapi fetch failed');
     }
@@ -17,7 +17,7 @@ export async function fetchJobs() {
       'filters[slug][$eq]': slug,
     }).toString();
   
-    const res = await fetch(url.toString());
+    const res = await fetch(url.toString(), { cache: "no-store" });
     if (!res.ok) throw new Error('Strapi fetch failed');
   
     const json = await res.json();

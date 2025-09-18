@@ -5,7 +5,7 @@ export async function fetchArticles() {
         'populate[category][fields]': 'name',
       }).toString();
   
-    const res = await fetch(url.toString());
+    const res = await fetch(url.toString(), { cache: "no-store" });
     if (!res.ok) throw new Error('Strapi fetch failed');
     const json = await res.json();
     return json.data;
@@ -19,7 +19,7 @@ url.search = new URLSearchParams({
     'populate[category][fields]': 'name',
   }).toString();
 
-  const res = await fetch(url.toString());
+  const res = await fetch(url.toString(), { cache: "no-store" });
   if (!res.ok) throw new Error('Strapi fetch failed');
 
   const json = await res.json();

@@ -1,7 +1,7 @@
 export async function fetchAllCaseStudies() {
   const url = new URL('/api/cas-concrets', process.env.NEXT_PUBLIC_STRAPI_URL);
   // Charger tous les cas d'études sans filtre
-  const res = await fetch(url.toString());
+  const res = await fetch(url.toString(), { cache: "no-store" });
   if (!res.ok) throw new Error('Strapi fetch failed');
   const json = await res.json();
   return json.data;
@@ -13,7 +13,7 @@ export async function fetchCaseStudiesByService(serviceSlug: string) {
     'filters[serviceSlug][$eq]': serviceSlug,
   }).toString();
 
-  const res = await fetch(url.toString());
+  const res = await fetch(url.toString(), { cache: "no-store" });
   if (!res.ok) throw new Error('Strapi fetch failed');
   const json = await res.json();
   return json.data;
@@ -25,7 +25,7 @@ export async function fetchCaseStudyBySlug(slug: string) {
     'filters[slug][$eq]': slug,
   }).toString();
 
-  const res = await fetch(url.toString());
+  const res = await fetch(url.toString(), { cache: "no-store" });
   if (!res.ok) throw new Error('Strapi fetch failed');
   const json = await res.json();
   return json.data[0];

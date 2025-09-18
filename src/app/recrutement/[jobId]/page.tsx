@@ -20,8 +20,6 @@ export async function generateStaticParams() {
   }));
 }
 
-export const revalidate = 3600;
-
 const JobPage = async ({ params }: JobPageProps) => {
   const { jobId } = await params;
   
