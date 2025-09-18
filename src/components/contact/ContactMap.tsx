@@ -40,7 +40,7 @@ const ContactMap = () => {
             Venez nous rencontrer dans un cadre exceptionnel pour discuter de vos ambitions. Notre porte est toujours ouverte aux entrepreneurs visionnaires.
           </p>
           <p className="font-semibold mb-4 dark:text-white">
-            123 Avenue des Champs-Élysées, 75008 Paris
+            203 Rue Michel Carré 95870 Bezons
           </p>
           <Button 
             onClick={() => navigateTo('prendre-rdv')} 

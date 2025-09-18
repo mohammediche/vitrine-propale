@@ -14,7 +14,7 @@ export const values = [
 ];
 
 export const timeline = [
-  { year: "2022", event: "Création de KATECH", description: "Naissance d'une vision : réinventer l'accompagnement entrepreneurial." },
+  { year: "2022", event: "Création de KATECH", description: "Naissance d'une vision : la transformation digitale." },
   { year: "2023", event: "Lancement de nos premiers outils SaaS", description: "Atteinte d'un jalon majeur, prouvant la confiance du marché." },
   { year: "2024", event: "100 entreprises accompagnées", description: "Célébration d'un portefeuille diversifié et performant." },
   { year: "2025", event: "Expansion Internationale", description: "Ouverture de nos premiers bureaux à l'étranger." },

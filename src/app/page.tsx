@@ -82,7 +82,7 @@ const IntroPage = () => {
                     transition={{ duration: 1, delay: 0.6 }}
                     className="text-lg text-gray-300 max-w-2xl mx-auto mb-10"
                 >
-                    KATECH déverrouille vos leviers stratégiques et vous conduit vers un futur plus performant.
+                    KATECH déverrouille vos leviers stratégiques et vous conduit vers plus de performance.
                     Nous transformons vos processus en innovation numérique pour propulser votre performance.
                 </motion.p>
                 

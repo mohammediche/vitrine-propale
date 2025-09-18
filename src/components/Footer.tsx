@@ -57,11 +57,11 @@ const Footer = () => {
               <div className="mt-6 space-y-3">
                 <div className="flex items-center gap-3 text-gray-400">
                   <MapPin className="w-5 h-5 text-blue-400" />
-                  <span>123 Avenue des Champs-Élysées, 75008 Paris</span>
+                  <span>203 Rue Michel Carré 95870 Bezons</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-400">
                   <Phone className="w-5 h-5 text-green-400" />
-                  <span>+33 1 23 45 67 89</span>
+                  <span>+33 6 52 50 09 27</span>
                 </div>
                 <div className="flex items-center gap-3 text-gray-400">
                   <Mail className="w-5 h-5 text-yellow-400" />

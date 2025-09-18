@@ -112,9 +112,10 @@ const FAQ = () => {
                           transition={{ duration: 0.3 }}
                           className="overflow-hidden"
                         >
-                          <div className="px-8 pb-6 text-gray-600 dark:text-gray-300 leading-relaxed">
-                            {faq.answer}
-                          </div>
+                          <div 
+                            className="px-8 pb-6 text-gray-600 dark:text-gray-300 leading-relaxed"
+                            dangerouslySetInnerHTML={{ __html: faq.answer }}
+                          />
                         </motion.div>
                       )}
                     </AnimatePresence>

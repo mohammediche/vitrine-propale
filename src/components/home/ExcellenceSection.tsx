@@ -7,14 +7,14 @@ export const excellenceItems = [
     {
       icon: Target,
       title: "Notre Mission",
-      description: "Développer des outils structurants qui stimule la création de la valeur en combinant avec cohérence l’expertise humaine et la technologie.",
+      description: "Développer des outils structurants qui stimulent la création de la valeur en combinant l’expertise humaine et la technologie.",
       color: "text-blue-600 dark:text-blue-400",
       bgColor: "bg-blue-100 dark:bg-blue-900/50"
     },
     {
       icon: Eye,
       title: "Notre Vision",
-      description: "Concevoir et déployer des solutions informatiques qui résolvent les frictions de vos processus et renforcent la performance de votre organisation.",
+      description: "Concevoir et déployer des solutions informatiques qui résolvent les frictions des processus et renforcent la performance de votre organisation.",
       color: "text-yellow-600 dark:text-yellow-400",
       bgColor: "bg-yellow-100 dark:bg-yellow-900/50"
     },

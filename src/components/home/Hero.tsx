@@ -55,7 +55,7 @@ const Hero = () => {
             transition={{ delay: 0.5, duration: 0.8 }}
             className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed"
           >
-            KATECH aide votre DSI à apporter de la performance à vos fonctions supports grâce à des logiciels sur-mesure, conçus pour répondre à vos besoins métiers et atteindre vos objectifs opérationnels.
+            KATECH aide votre DSI à apporter de la performance à vos fonctions supports grâce à des logiciels sur-mesure, conçus pour atteindre vos objectifs opérationnels.
           </motion.p>
 
           <motion.div

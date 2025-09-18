@@ -37,7 +37,7 @@ const MentionsLegalesPage = () => {
                       <li>RCS Paris : 123 456 789</li>
                       <li>Numéro de TVA intracommunautaire : FR00123456789</li>
                       <li>Email : contact@katech.fr</li>
-                      <li>Téléphone : +33 1 23 45 67 89</li>
+                      <li>Téléphone : +33 6 52 50 09 27</li>
                     </ul>
                   </div>
 

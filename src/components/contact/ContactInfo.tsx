@@ -22,11 +22,11 @@ const ContactInfo = () => {
         </p>
         <p className="flex items-center">
           <Phone className="w-5 h-5 mr-3 text-blue-500 dark:text-accent-electric-blue" /> 
-          <a href="tel:+33123456789" className="hover:underline">+33 1 23 45 67 89</a>
+          <a href="tel:+33652500927" className="hover:underline">+33 6 52 50 09 27</a>
         </p>
         <p className="flex items-center">
-          <MapPin className="w-5 h-5 mr-3 text-blue-500 dark:text-accent-electric-blue" /> 
-          123 Avenue des Champs-Élysées, 75008 Paris
+          <MapPin className="w-5 h-5 mr-3 text-blue-500 dark:text-accent-electric-blue" />
+          203 Rue Michel Carré 95870 Bezons
         </p>
         <p className="text-sm text-gray-500 dark:text-gray-400 mt-2">
           Horaires : Lundi - Vendredi, 9h00 - 18h00

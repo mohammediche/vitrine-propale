@@ -10,8 +10,8 @@ const Stats = () => {
   const isInView = useInView(ref, { once: true});
 
   const stats = [
-    { value: 54, suffix: '', title: 'Nombre de clients accompagnés', text: '', icon: Briefcase },
-    { value: 67, suffix: '', title: 'Nombre de projet réussi', text: '', icon: TrendingUp },
+    { value: 54, suffix: '', title: 'Clients accompagnés', text: '', icon: Briefcase },
+    { value: 67, suffix: '', title: 'Projets réussis', text: '', icon: TrendingUp },
     { value: 4, suffix: '', title: "SaaS en RUN", text: '', icon: Award },
     { value: -10, suffix: '%', title: 'Taux de turnover', text: '', icon: Globe }
   ];

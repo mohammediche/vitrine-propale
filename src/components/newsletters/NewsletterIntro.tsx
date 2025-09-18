@@ -19,7 +19,7 @@ const NewsletterIntro = () => {
           transition={{ delay: 0.1 }}
           className="text-xl md:text-2xl text-gray-600 dark:text-gray-300 max-w-3xl mx-auto"
         >
-          Plongez au cœur des tendances qui façonnent l&apos;avenir de l&apos;entrepreneuriat et de l&apos;investissement.
+          Plongez au cœur des tendances qui façonnent l&apos;avenir de l&apos;office informatique.
         </motion.p>
       </div>
     </section>
